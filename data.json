@@ -1,32 +1,143 @@
 {
-  "generado": "2026-04-20T02:48:16.735989",
+  "generado": "2026-04-20T02:49:12.302363",
   "clientes": {
     "mayan_zero": {
       "nombre": "Mayan Zero",
       "color": "#2b3a8f",
       "tipo": "Interno",
-      "status": "error",
-      "error": "<Fault 3: 'Access Denied'>",
-      "ultima_actualizacion": "02:48",
-      "resumen": {},
-      "detalle": {}
+      "status": "ok",
+      "ultima_actualizacion": "02:49",
+      "resumen": {
+        "cxc_vencidas_total": 1500.0,
+        "cxc_vencidas_count": 1,
+        "cxp_pendientes_total": 0,
+        "cxp_pendientes_count": 0,
+        "pagos_mes_total": 0,
+        "pagos_mes_count": 0,
+        "sin_timbrar_count": 1,
+        "facturas_proveedor_total": 0,
+        "facturas_proveedor_count": 0
+      },
+      "detalle": {
+        "cxc_vencidas": [
+          {
+            "id": 1368,
+            "name": "INV/2026/00001",
+            "partner_id": "Rubi Baqueiro",
+            "amount_residual": 1500.0,
+            "invoice_date_due": "2026-01-09"
+          }
+        ],
+        "cxp_pendientes": [],
+        "pagos_mes": [],
+        "sin_timbrar": [
+          {
+            "id": 151,
+            "name": false,
+            "partner_id": "PÚBLICO EN GENERAL",
+            "amount_total": 1.0,
+            "invoice_date": "2024-12-31"
+          }
+        ],
+        "facturas_proveedor": []
+      }
     },
     "mayan_kakaw": {
       "nombre": "Mayan Kakaw",
       "color": "#c47f1a",
       "tipo": "Cliente",
-      "status": "error",
-      "error": "<Fault 3: 'Access Denied'>",
-      "ultima_actualizacion": "02:48",
-      "resumen": {},
-      "detalle": {}
+      "status": "ok",
+      "ultima_actualizacion": "02:49",
+      "resumen": {
+        "cxc_vencidas_total": 84209.3,
+        "cxc_vencidas_count": 8,
+        "cxp_pendientes_total": 20000.0,
+        "cxp_pendientes_count": 1,
+        "pagos_mes_total": 0,
+        "pagos_mes_count": 0,
+        "sin_timbrar_count": 0,
+        "facturas_proveedor_total": 0,
+        "facturas_proveedor_count": 0
+      },
+      "detalle": {
+        "cxc_vencidas": [
+          {
+            "id": 1529,
+            "name": "INV/2026/00031",
+            "partner_id": "PANZA DINING & BAR",
+            "amount_residual": 1.0,
+            "invoice_date_due": "2026-02-16"
+          },
+          {
+            "id": 1402,
+            "name": "INV/2026/00011",
+            "partner_id": "MARTIN DEMIAN CHAIA",
+            "amount_residual": 2736.29,
+            "invoice_date_due": "2026-01-14"
+          },
+          {
+            "id": 1401,
+            "name": "INV/2026/00010",
+            "partner_id": "MARTIN DEMIAN CHAIA",
+            "amount_residual": 2736.29,
+            "invoice_date_due": "2026-01-14"
+          },
+          {
+            "id": 1400,
+            "name": "INV/2026/00009",
+            "partner_id": "MARTIN DEMIAN CHAIA",
+            "amount_residual": 2796.36,
+            "invoice_date_due": "2026-01-14"
+          },
+          {
+            "id": 1399,
+            "name": "INV/2026/00008",
+            "partner_id": "MARTIN DEMIAN CHAIA",
+            "amount_residual": 2856.44,
+            "invoice_date_due": "2026-01-14"
+          },
+          {
+            "id": 1398,
+            "name": "INV/2026/00007",
+            "partner_id": "MARTIN DEMIAN CHAIA",
+            "amount_residual": 2646.45,
+            "invoice_date_due": "2026-01-14"
+          },
+          {
+            "id": 1312,
+            "name": "INV/2025/00036",
+            "partner_id": "PANZA DINING & BAR, ALEJANDRA DIEGO",
+            "amount_residual": 66056.63,
+            "invoice_date_due": "2025-12-26"
+          },
+          {
+            "id": 519,
+            "name": "INV/2025/00011",
+            "partner_id": "VILLA IKEBANA",
+            "amount_residual": 4379.84,
+            "invoice_date_due": "2025-11-30"
+          }
+        ],
+        "cxp_pendientes": [
+          {
+            "id": 68,
+            "name": "FACTU/2025/11/0001",
+            "partner_id": "MAYAN ZERO CONSULTORIA",
+            "amount_residual": 20000.0,
+            "invoice_date_due": "2025-11-13"
+          }
+        ],
+        "pagos_mes": [],
+        "sin_timbrar": [],
+        "facturas_proveedor": []
+      }
     },
     "moonshift": {
       "nombre": "Moonshift / EVIRAT",
       "color": "#4e6de8",
       "tipo": "Cliente",
       "status": "ok",
-      "ultima_actualizacion": "02:48",
+      "ultima_actualizacion": "02:49",
       "resumen": {
         "cxc_vencidas_total": 135100.08,
         "cxc_vencidas_count": 7,
@@ -205,7 +316,7 @@
       "color": "#1e7a4a",
       "tipo": "Cliente",
       "status": "ok",
-      "ultima_actualizacion": "02:48",
+      "ultima_actualizacion": "02:49",
       "resumen": {
         "cxc_vencidas_total": 160926.4,
         "cxc_vencidas_count": 50,
