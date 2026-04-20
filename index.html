@@ -3,23 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XTELA — Dashboard de Agentes</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>Mayan Zero — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #05080b;
-  --surface: #0b1018;
-  --surface2: #111820;
-  --border: #1a2535;
-  --text: #e2eaf2;
-  --muted: #4a6070;
-  --soft: #7a90a0;
-  --teal: #00d4b4;
-  --gold: #f0b429;
-  --purple: #a78bfa;
-  --blue: #3d9eff;
-  --rose: #ff5c7c;
-  --green: #4ade80;
+  --bg: #eef0f5;
+  --surface: #ffffff;
+  --surface2: #f3f5f9;
+  --border: #dde2ec;
+  --border2: #c8d0e0;
+  --text: #1e2a3a;
+  --muted: #6b7a94;
+  --soft: #9aa5bc;
+  --blue-dark: #2b3a8f;
+  --blue: #3d52c4;
+  --blue-mid: #4e6de8;
+  --blue-light: #e8ecfb;
+  --blue-sky: #64a8f0;
+  --blue-pale: #dce6f8;
+  --red: #d63b3b;
+  --red-light: #fdeaea;
+  --gold: #c47f1a;
+  --gold-light: #fdf3e0;
+  --green: #1e7a4a;
+  --green-light: #e5f5ed;
+  --shadow: 0 2px 16px rgba(43,58,143,0.08);
+  --shadow-md: 0 4px 24px rgba(43,58,143,0.12);
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -27,470 +36,646 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Mono', monospace;
+  font-family: 'Nunito Sans', sans-serif;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
-/* Grid bg */
-body::before {
-  content:'';
-  position:fixed;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(0,212,180,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,212,180,0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events:none;
-  z-index:0;
+/* ── NAVBAR ── */
+nav {
+  background: var(--surface);
+  height: 64px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 0 var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.wrapper { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:32px 24px 80px; }
-
-/* Header */
-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  margin-bottom:48px;
-  padding-bottom:24px;
-  border-bottom:1px solid var(--border);
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.logo {
-  font-family:'Bebas Neue', sans-serif;
-  font-size:48px;
-  letter-spacing:0.08em;
-  line-height:1;
-  color:var(--teal);
+/* SVG Logo inline */
+.nav-logo svg {
+  width: 36px;
+  height: 36px;
 }
 
-.logo span { color:var(--text); }
-
-.header-right {
-  text-align:right;
+.nav-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--blue-dark);
+  letter-spacing: -0.03em;
 }
 
-.last-update {
-  font-size:11px;
-  color:var(--muted);
-  letter-spacing:0.1em;
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.refresh-btn {
-  margin-top:8px;
-  padding:6px 16px;
-  background:transparent;
-  border:1px solid var(--border);
-  color:var(--soft);
-  font-family:'DM Mono', monospace;
-  font-size:11px;
-  cursor:pointer;
-  letter-spacing:0.1em;
-  transition:all 0.2s;
+.nav-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--soft);
+  letter-spacing: 0.02em;
 }
 
-.refresh-btn:hover {
-  border-color:var(--teal);
-  color:var(--teal);
+.btn-refresh {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
 }
 
-.refresh-btn.loading {
-  opacity:0.5;
-  cursor:wait;
+.btn-refresh:hover { background: var(--blue-dark); }
+.btn-refresh:active { transform: scale(0.97); }
+.btn-refresh.loading { opacity: 0.6; cursor: wait; }
+
+/* ── PAGE ── */
+.page {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
 }
 
-/* Status bar */
-.status-bar {
-  display:flex;
-  gap:8px;
-  margin-bottom:32px;
-  flex-wrap:wrap;
+/* ── PAGE HEADER ── */
+.page-header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.status-pill {
-  font-size:10px;
-  font-family:'Syne', sans-serif;
-  font-weight:700;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  padding:4px 12px;
-  border-radius:20px;
-  border:1px solid;
-  display:flex;
-  align-items:center;
-  gap:6px;
+.page-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -0.03em;
 }
 
-.status-pill .dot {
-  width:6px; height:6px;
-  border-radius:50%;
-  background:currentColor;
-  animation: pulse 2s infinite;
+.page-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 2px;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity:1; }
-  50% { opacity:0.3; }
+/* ── STATUS PILLS ── */
+.status-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
-.pill-ok    { color:var(--green); border-color:#4ade8030; background:#4ade8008; }
-.pill-error { color:var(--rose);  border-color:#ff5c7c30; background:#ff5c7c08; }
-.pill-load  { color:var(--muted); border-color:#1a253580; background:transparent; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1.5px solid;
+}
 
-/* Clients grid */
+.pill-ok    { color: var(--green); border-color: #9fd4b8; background: var(--green-light); }
+.pill-error { color: var(--red);   border-color: #f0b0b0; background: var(--red-light);   }
+.pill-load  { color: var(--soft);  border-color: var(--border2); background: var(--surface); }
+
+.pill-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%,100%{opacity:1} 50%{opacity:0.3}
+}
+
+/* ── SUMMARY CARDS ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.sum-card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.sum-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--card-accent);
+  border-radius: 12px 12px 0 0;
+}
+
+.sum-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.sum-value {
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.sum-value.red   { color: var(--red); }
+.sum-value.gold  { color: var(--gold); }
+.sum-value.blue  { color: var(--blue); }
+.sum-value.text  { color: var(--text); }
+
+.sum-sub {
+  font-size: 11px;
+  color: var(--soft);
+  margin-top: 6px;
+}
+
+/* ── CLIENT CARDS ── */
 .clients-grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap:2px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 16px;
 }
 
-/* Client card */
 .client-card {
-  background:var(--surface);
-  border:1px solid var(--border);
-  position:relative;
-  overflow:hidden;
-  transition:border-color 0.3s;
+  background: var(--surface);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
-.client-card:hover { border-color:var(--card-color); }
-
-.client-card::before {
-  content:'';
-  position:absolute;
-  top:0; left:0; right:0;
-  height:2px;
-  background:var(--card-color);
+.client-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
-.client-card::after {
-  content:'';
-  position:absolute;
-  top:-80px; right:-80px;
-  width:200px; height:200px;
-  background:radial-gradient(circle, var(--card-color) 0%, transparent 70%);
-  opacity:0.05;
-  pointer-events:none;
+.card-top {
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--blue-light) 0%, #fff 60%);
 }
 
-.card-header {
-  padding:20px 24px 16px;
-  border-bottom:1px solid var(--border);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.card-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.client-name {
-  font-family:'Syne', sans-serif;
-  font-size:15px;
-  font-weight:800;
-  color:var(--card-color);
-  letter-spacing:-0.01em;
+.card-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--card-color);
+  flex-shrink: 0;
 }
 
-.client-type {
-  font-size:9px;
-  font-family:'Syne', sans-serif;
-  font-weight:700;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:var(--muted);
-  padding:2px 8px;
-  border:1px solid var(--border);
-  border-radius:3px;
+.card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--blue-pale);
+  color: var(--blue);
 }
 
-/* Metrics grid inside card */
-.metrics-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1px;
-  background:var(--border);
-  border-bottom:1px solid var(--border);
+/* Metrics */
+.metrics-wrap {
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
-.metric-cell {
-  background:var(--surface);
-  padding:16px 20px;
-  cursor:pointer;
-  transition:background 0.15s;
+.metric-box {
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all 0.15s;
 }
 
-.metric-cell:hover { background:var(--surface2); }
+.metric-box:hover {
+  border-color: var(--blue-mid);
+  background: var(--blue-light);
+}
 
-.metric-cell.active { background:var(--surface2); }
+.metric-box.active {
+  border-color: var(--blue);
+  background: var(--blue-light);
+}
+
+.metric-box.wide {
+  grid-column: 1 / -1;
+}
 
 .metric-label {
-  font-size:9px;
-  font-family:'Syne', sans-serif;
-  font-weight:700;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
 }
 
 .metric-value {
-  font-family:'Bebas Neue', sans-serif;
-  font-size:28px;
-  letter-spacing:0.03em;
-  line-height:1;
-  color:var(--card-color);
+  font-family: 'Nunito', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
-.metric-value.alert { color:var(--rose); }
-.metric-value.warning { color:var(--gold); }
-.metric-value.ok { color:var(--green); }
+.metric-value.red   { color: var(--red); }
+.metric-value.gold  { color: var(--gold); }
+.metric-value.blue  { color: var(--blue); }
+.metric-value.green { color: var(--green); }
+.metric-value.dark  { color: var(--text); }
 
 .metric-sub {
-  font-size:10px;
-  color:var(--muted);
-  margin-top:4px;
+  font-size: 10px;
+  color: var(--soft);
+  margin-top: 4px;
 }
 
-/* Detail panel */
-.detail-panel {
-  padding:0;
-  max-height:0;
-  overflow:hidden;
-  transition:max-height 0.4s ease, padding 0.3s;
+/* Detail drawer */
+.detail-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
 }
 
-.detail-panel.open {
-  max-height:400px;
-  padding:16px 20px;
-  overflow-y:auto;
+.detail-drawer.open {
+  max-height: 380px;
+  overflow-y: auto;
 }
 
-.detail-title {
-  font-size:10px;
-  font-family:'Syne', sans-serif;
-  font-weight:700;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:var(--soft);
-  margin-bottom:12px;
+.detail-inner {
+  margin: 0 20px 16px;
+  background: var(--surface2);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.detail-head {
+  padding: 10px 16px;
+  background: var(--blue-light);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  border-bottom: 1px solid var(--blue-pale);
 }
 
 .detail-row {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:8px 0;
-  border-bottom:1px solid var(--border);
-  font-size:11px;
-  gap:12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  gap: 10px;
+  font-size: 12px;
 }
 
-.detail-row:last-child { border-bottom:none; }
+.detail-row:last-child { border-bottom: none; }
 
 .detail-partner {
-  color:var(--soft);
-  flex:1;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.detail-amount {
-  color:var(--card-color);
-  font-weight:500;
-  white-space:nowrap;
+  color: var(--text);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
 }
 
 .detail-date {
-  color:var(--muted);
-  font-size:10px;
-  white-space:nowrap;
+  color: var(--soft);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.detail-amount {
+  font-weight: 800;
+  white-space: nowrap;
+  color: var(--blue-dark);
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Empty state */
+.empty-detail {
+  padding: 20px 16px;
+  font-size: 12px;
+  color: var(--soft);
+  text-align: center;
 }
 
 /* Loading skeleton */
-.skeleton {
-  background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
-  background-size:200% 100%;
+.sk {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius:4px;
-  height:28px;
+  border-radius: 8px;
 }
 
 @keyframes shimmer {
-  0% { background-position:200% 0; }
-  100% { background-position:-200% 0; }
+  0%{background-position:200% 0} 100%{background-position:-200% 0}
 }
 
 /* Error state */
-.error-state {
-  padding:32px 24px;
-  text-align:center;
+.error-card {
+  padding: 24px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 }
 
-.error-icon { font-size:32px; margin-bottom:12px; }
-.error-msg { font-size:12px; color:var(--rose); line-height:1.6; }
-
-/* Summary row */
-.summary-row {
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-  gap:2px;
-  margin-bottom:32px;
-  border:1px solid var(--border);
+.error-icon {
+  font-size: 22px;
+  flex-shrink: 0;
 }
 
-.summary-cell {
-  background:var(--surface);
-  padding:20px 24px;
+.error-msg {
+  font-size: 12px;
+  color: var(--red);
+  font-weight: 600;
+  line-height: 1.5;
 }
 
-.summary-label {
-  font-size:9px;
-  font-family:'Syne', sans-serif;
-  font-weight:700;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:6px;
-}
-
-.summary-value {
-  font-family:'Bebas Neue', sans-serif;
-  font-size:36px;
-  color:var(--teal);
-  letter-spacing:0.03em;
+/* Footer */
+footer {
+  margin-top: 40px;
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--soft);
+  border-top: 1px solid var(--border);
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width:4px; }
-::-webkit-scrollbar-track { background:transparent; }
-::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
 
-@media(max-width:680px) {
-  .clients-grid { grid-template-columns:1fr; }
-  .logo { font-size:36px; }
+@media(max-width:900px) {
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media(max-width:600px) {
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+  .clients-grid { grid-template-columns: 1fr; }
+  .page-title { font-size: 22px; }
+  nav { padding: 0 16px; }
+  .page { padding: 20px 16px 40px; }
 }
 </style>
 </head>
 <body>
-<div class="wrapper">
 
-  <header>
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#7ab3f0"/>
+            <stop offset="100%" stop-color="#2b3a8f"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="url(#g1)" opacity="0.15"/>
+        <path d="M50 15 C28 15, 12 30, 12 50 C12 65, 22 77, 38 82 C30 75, 26 64, 28 53 C30 42, 40 35, 50 35 C60 35, 68 42, 70 52 C72 62, 66 72, 56 76 C66 74, 76 64, 78 52 C80 36, 67 20, 50 15Z" fill="url(#g1)" opacity="0.5"/>
+        <path d="M50 25 C35 25, 22 36, 22 50 C22 61, 29 70, 40 74 C34 68, 32 59, 35 51 C38 43, 45 38, 52 39 C59 40, 64 47, 63 55 C62 63, 56 69, 49 70 C57 70, 65 63, 67 54 C69 43, 62 30, 50 25Z" fill="url(#g1)" opacity="0.7"/>
+        <path d="M50 35 C41 35, 33 42, 33 51 C33 58, 38 64, 46 66 C42 62, 41 56, 44 51 C47 46, 52 44, 57 46 C52 40, 50 35, 50 35Z" fill="#2b3a8f"/>
+      </svg>
+    </div>
+    <span class="nav-name">mayanzero</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-time" id="nav-time"></span>
+    <button class="btn-refresh" id="refresh-btn" onclick="refreshAll()">
+      ↺ Actualizar
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- Header -->
+  <div class="page-header">
     <div>
-      <div class="logo">XTELA<span>.</span></div>
-      <div style="font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-top:4px;">DASHBOARD DE AGENTES · VISTA MAESTRA</div>
+      <div class="page-title">Dashboard de Agentes</div>
+      <div class="page-sub">Vista maestra · Todos los clientes conectados</div>
     </div>
-    <div class="header-right">
-      <div class="last-update" id="last-update">Cargando...</div>
-      <button class="refresh-btn" onclick="refreshAll()" id="refresh-btn">↺ ACTUALIZAR TODO</button>
-    </div>
-  </header>
-
-  <!-- Status pills -->
-  <div class="status-bar" id="status-bar"></div>
-
-  <!-- Summary totals -->
-  <div class="summary-row" id="summary-row">
-    <div class="summary-cell"><div class="summary-label">CxC Vencida Total</div><div class="summary-value skeleton" style="width:120px"></div></div>
-    <div class="summary-cell"><div class="summary-label">CxP Pendiente Total</div><div class="summary-value skeleton" style="width:120px"></div></div>
-    <div class="summary-cell"><div class="summary-label">Pagos del Mes</div><div class="summary-value skeleton" style="width:120px"></div></div>
-    <div class="summary-cell"><div class="summary-label">Sin Timbrar</div><div class="summary-value skeleton" style="width:60px"></div></div>
+    <div id="last-update" style="font-size:12px;color:var(--soft);font-weight:600"></div>
   </div>
 
-  <!-- Client cards -->
+  <!-- Status -->
+  <div class="status-row" id="status-row">
+    <div class="pill pill-load"><span class="pill-dot"></span>Cargando agentes...</div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-grid" id="summary-grid">
+    <div class="sum-card" style="--card-accent:var(--red)">
+      <div class="sum-label">CxC Vencida Total</div>
+      <div class="sk" style="height:32px;width:120px;margin-bottom:6px"></div>
+      <div class="sum-sub">Cargando...</div>
+    </div>
+    <div class="sum-card" style="--card-accent:var(--gold)">
+      <div class="sum-label">CxP Pendiente Total</div>
+      <div class="sk" style="height:32px;width:120px;margin-bottom:6px"></div>
+      <div class="sum-sub">Cargando...</div>
+    </div>
+    <div class="sum-card" style="--card-accent:var(--blue)">
+      <div class="sum-label">Pagos del Mes</div>
+      <div class="sk" style="height:32px;width:120px;margin-bottom:6px"></div>
+      <div class="sum-sub">Cargando...</div>
+    </div>
+    <div class="sum-card" style="--card-accent:var(--blue-dark)">
+      <div class="sum-label">Sin Timbrar</div>
+      <div class="sk" style="height:32px;width:60px;margin-bottom:6px"></div>
+      <div class="sum-sub">Cargando...</div>
+    </div>
+  </div>
+
+  <!-- Clients -->
   <div class="clients-grid" id="clients-grid"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div style="font-weight:700;color:var(--blue-dark)">mayanzero · XTELABOT</div>
+    <div>Dashboard de Agentes · Datos en tiempo real desde Odoo</div>
+    <div id="footer-ts"></div>
+  </footer>
 
 </div>
 
 <script>
 const API = 'http://34.27.77.64:8090';
 
-const CLIENTES_META = {
-  mayan_zero:   { nombre:'Mayan Zero',        color:'#00d4b4', tipo:'interno'  },
-  mayan_kakaw:  { nombre:'Mayan Kakaw',        color:'#f0b429', tipo:'cliente'  },
-  moonshift:    { nombre:'Moonshift / EVIRAT', color:'#a78bfa', tipo:'cliente'  },
-  agua_tulum:   { nombre:'Agua de Tulum',      color:'#3d9eff', tipo:'cliente'  },
+const CLIENTES = {
+  mayan_zero:  { nombre:'Mayan Zero',        color:'#2b3a8f', tipo:'Interno'  },
+  mayan_kakaw: { nombre:'Mayan Kakaw',        color:'#c47f1a', tipo:'Cliente'  },
+  moonshift:   { nombre:'Moonshift / EVIRAT', color:'#4e6de8', tipo:'Cliente'  },
+  agua_tulum:  { nombre:'Agua de Tulum',      color:'#1e7a4a', tipo:'Cliente'  },
 };
 
 let state = {};
 let activeDetail = {};
 
+function tick() {
+  const now = new Date();
+  document.getElementById('nav-time').textContent =
+    now.toLocaleTimeString('es-MX', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+setInterval(tick, 1000);
+tick();
+
 function fmt(n) {
-  if (!n && n !== 0) return '—';
-  return '$' + Number(n).toLocaleString('es-MX', {minimumFractionDigits:0, maximumFractionDigits:0});
+  if (n === null || n === undefined) return '—';
+  if (Math.abs(n) >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (Math.abs(n) >= 1000)    return '$' + Math.round(n).toLocaleString('es-MX');
+  return '$' + Number(n).toFixed(0);
 }
 
-function fmtDate(s) {
-  if (!s) return '';
-  return s.substring(0,10);
-}
+function fmtDate(s) { return s ? s.substring(0,10) : ''; }
 
 function partnerName(p) {
   if (!p) return '—';
   if (Array.isArray(p)) return p[1] || '—';
-  return p;
+  return String(p);
 }
 
-function renderStatusBar() {
-  const bar = document.getElementById('status-bar');
-  bar.innerHTML = Object.entries(CLIENTES_META).map(([key, meta]) => {
-    const d = state[key];
-    let cls = 'pill-load', label = 'CARGANDO';
-    if (d) {
-      cls   = d.status === 'ok' ? 'pill-ok' : 'pill-error';
-      label = d.status === 'ok' ? 'CONECTADO' : 'ERROR';
-    }
-    return `<div class="status-pill ${cls}">
-      <span class="dot"></span>
-      <span style="color:${meta.color}">${meta.nombre}</span>
-      <span>${label}</span>
-    </div>`;
-  }).join('');
+function getClass(val, type) {
+  if (type === 'cxc')     return val > 0 ? 'red'  : 'green';
+  if (type === 'cxp')     return val > 0 ? 'gold' : 'green';
+  if (type === 'timbrar') return val > 0 ? 'red'  : 'green';
+  return 'blue';
+}
+
+function renderStatus() {
+  document.getElementById('status-row').innerHTML =
+    Object.entries(CLIENTES).map(([k,m]) => {
+      const d = state[k];
+      const cls   = !d ? 'pill-load' : d.status === 'ok' ? 'pill-ok' : 'pill-error';
+      const label = !d ? 'Cargando'  : d.status === 'ok' ? 'Conectado' : 'Error';
+      return `<div class="pill ${cls}">
+        <span class="pill-dot"></span>
+        <span style="color:${m.color};font-weight:800">${m.nombre}</span>
+        <span>· ${label}</span>
+      </div>`;
+    }).join('');
 }
 
 function renderSummary() {
-  let totalCxc=0, totalCxp=0, totalPagos=0, totalSinTimbrar=0;
+  let cxc=0, cxp=0, pagos=0, timbrar=0,
+      cxcN=0, cxpN=0, pagosN=0;
   Object.values(state).forEach(d => {
-    if (d?.status === 'ok' && d.resumen) {
-      totalCxc        += d.resumen.cxc_vencidas_total    || 0;
-      totalCxp        += d.resumen.cxp_pendientes_total  || 0;
-      totalPagos      += d.resumen.pagos_mes_total       || 0;
-      totalSinTimbrar += d.resumen.sin_timbrar_count     || 0;
+    if (d?.status === 'ok') {
+      cxc     += d.resumen?.cxc_vencidas_total    || 0;
+      cxp     += d.resumen?.cxp_pendientes_total  || 0;
+      pagos   += d.resumen?.pagos_mes_total       || 0;
+      timbrar += d.resumen?.sin_timbrar_count     || 0;
+      cxcN    += d.resumen?.cxc_vencidas_count    || 0;
+      cxpN    += d.resumen?.cxp_pendientes_count  || 0;
+      pagosN  += d.resumen?.pagos_mes_count       || 0;
     }
   });
-
-  document.getElementById('summary-row').innerHTML = `
-    <div class="summary-cell">
-      <div class="summary-label">CxC Vencida Total</div>
-      <div class="summary-value" style="color:var(--rose)">${fmt(totalCxc)}</div>
+  document.getElementById('summary-grid').innerHTML = `
+    <div class="sum-card" style="--card-accent:var(--red)">
+      <div class="sum-label">CxC Vencida Total</div>
+      <div class="sum-value red">${fmt(cxc)}</div>
+      <div class="sum-sub">${cxcN} facturas vencidas</div>
     </div>
-    <div class="summary-cell">
-      <div class="summary-label">CxP Pendiente Total</div>
-      <div class="summary-value" style="color:var(--gold)">${fmt(totalCxp)}</div>
+    <div class="sum-card" style="--card-accent:var(--gold)">
+      <div class="sum-label">CxP Pendiente Total</div>
+      <div class="sum-value gold">${fmt(cxp)}</div>
+      <div class="sum-sub">${cxpN} facturas por pagar</div>
     </div>
-    <div class="summary-cell">
-      <div class="summary-label">Pagos del Mes</div>
-      <div class="summary-value" style="color:var(--teal)">${fmt(totalPagos)}</div>
+    <div class="sum-card" style="--card-accent:var(--blue)">
+      <div class="sum-label">Pagos del Mes</div>
+      <div class="sum-value blue">${fmt(pagos)}</div>
+      <div class="sum-sub">${pagosN} pagos registrados</div>
     </div>
-    <div class="summary-cell">
-      <div class="summary-label">Sin Timbrar</div>
-      <div class="summary-value" style="color:${totalSinTimbrar > 0 ? 'var(--rose)' : 'var(--green)'}">${totalSinTimbrar}</div>
+    <div class="sum-card" style="--card-accent:var(--blue-dark)">
+      <div class="sum-label">Sin Timbrar</div>
+      <div class="sum-value ${timbrar > 0 ? 'red' : 'text'}">${timbrar}</div>
+      <div class="sum-sub">facturas en borrador</div>
     </div>
   `;
 }
 
 function toggleDetail(key, metric) {
-  const panel = document.getElementById(`detail-${key}`);
+  const drawer = document.getElementById(`drawer-${key}`);
   if (activeDetail[key] === metric) {
-    panel.classList.remove('open');
+    drawer.classList.remove('open');
     activeDetail[key] = null;
+    document.querySelectorAll(`[data-key="${key}"]`).forEach(el => el.classList.remove('active'));
     return;
   }
+  document.querySelectorAll(`[data-key="${key}"]`).forEach(el => el.classList.remove('active'));
+  document.querySelector(`[data-key="${key}"][data-metric="${metric}"]`)?.classList.add('active');
   activeDetail[key] = metric;
-  panel.classList.add('open');
+  drawer.classList.add('open');
 
   const d = state[key];
   if (!d?.detalle) return;
-
   const items = d.detalle[metric] || [];
   const titles = {
     cxc_vencidas:       'Cuentas por Cobrar Vencidas',
@@ -500,140 +685,132 @@ function toggleDetail(key, metric) {
     facturas_proveedor: 'Facturas de Proveedor',
   };
 
-  if (!items.length) {
-    panel.innerHTML = `<div class="detail-title">${titles[metric]}</div><div style="font-size:11px;color:var(--muted);padding:8px 0">Sin registros</div>`;
-    return;
-  }
+  const rows = items.length
+    ? items.map(r => {
+        const amount = r.amount_residual ?? r.amount ?? r.amount_total ?? 0;
+        const date   = r.invoice_date_due ?? r.date ?? r.invoice_date ?? '';
+        return `<div class="detail-row">
+          <span class="detail-partner">${partnerName(r.partner_id)}</span>
+          <span class="detail-date">${fmtDate(date)}</span>
+          <span class="detail-amount">${fmt(amount)}</span>
+        </div>`;
+      }).join('')
+    : `<div class="empty-detail">Sin registros este período</div>`;
 
-  const rows = items.map(r => {
-    const amount = r.amount_residual ?? r.amount ?? r.amount_total ?? 0;
-    const date   = r.invoice_date_due ?? r.date ?? r.invoice_date ?? '';
-    return `<div class="detail-row">
-      <span class="detail-partner">${partnerName(r.partner_id)}</span>
-      <span class="detail-date">${fmtDate(date)}</span>
-      <span class="detail-amount">${fmt(amount)}</span>
-    </div>`;
-  }).join('');
-
-  panel.innerHTML = `<div class="detail-title">${titles[metric]} (${items.length})</div>${rows}`;
+  drawer.innerHTML = `<div class="detail-inner">
+    <div class="detail-head">${titles[metric] || metric} · ${items.length} registros</div>
+    ${rows}
+  </div>`;
 }
 
 function renderCard(key) {
-  const meta = CLIENTES_META[key];
-  const d    = state[key];
+  const m = CLIENTES[key];
+  const d = state[key];
 
   if (!d) {
-    return `<div class="client-card" style="--card-color:${meta.color}">
-      <div class="card-header">
-        <div class="client-name">${meta.nombre}</div>
-        <div class="client-type">${meta.tipo}</div>
+    return `<div class="client-card" style="--card-color:${m.color}">
+      <div class="card-top">
+        <div class="card-name"><span class="card-dot"></span>${m.nombre}</div>
+        <div class="card-tag">${m.tipo}</div>
       </div>
-      <div style="padding:32px;text-align:center">
-        <div class="skeleton" style="width:80%;margin:0 auto 8px"></div>
-        <div class="skeleton" style="width:60%;margin:0 auto"></div>
+      <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="sk" style="height:70px;border-radius:10px"></div>
+        <div class="sk" style="height:70px;border-radius:10px"></div>
+        <div class="sk" style="height:70px;border-radius:10px"></div>
+        <div class="sk" style="height:70px;border-radius:10px"></div>
       </div>
     </div>`;
   }
 
   if (d.status === 'error') {
-    return `<div class="client-card" style="--card-color:${meta.color}">
-      <div class="card-header">
-        <div class="client-name">${meta.nombre}</div>
-        <div class="client-type">${meta.tipo}</div>
+    return `<div class="client-card" style="--card-color:${m.color}">
+      <div class="card-top">
+        <div class="card-name"><span class="card-dot"></span>${m.nombre}</div>
+        <div class="card-tag">${m.tipo}</div>
       </div>
-      <div class="error-state">
+      <div class="error-card">
         <div class="error-icon">⚠️</div>
-        <div class="error-msg">${d.error || 'Error de conexión'}</div>
+        <div class="error-msg">${d.error || 'Error de conexión con Odoo'}</div>
       </div>
     </div>`;
   }
 
   const r = d.resumen;
-  const cxcClass    = r.cxc_vencidas_count > 0 ? 'alert' : 'ok';
-  const cxpClass    = r.cxp_pendientes_count > 0 ? 'warning' : 'ok';
-  const timbrClass  = r.sin_timbrar_count > 0 ? 'alert' : 'ok';
 
-  return `<div class="client-card" style="--card-color:${meta.color}">
-    <div class="card-header">
-      <div class="client-name">${meta.nombre}</div>
-      <div class="client-type">${meta.tipo}</div>
+  return `<div class="client-card" style="--card-color:${m.color}">
+    <div class="card-top">
+      <div class="card-name"><span class="card-dot"></span>${m.nombre}</div>
+      <div class="card-tag">${m.tipo}</div>
     </div>
-    <div class="metrics-grid">
-      <div class="metric-cell" onclick="toggleDetail('${key}','cxc_vencidas')">
+    <div class="metrics-wrap">
+      <div class="metric-box" data-key="${key}" data-metric="cxc_vencidas"
+           onclick="toggleDetail('${key}','cxc_vencidas')">
         <div class="metric-label">CxC Vencida</div>
-        <div class="metric-value ${cxcClass}">${fmt(r.cxc_vencidas_total)}</div>
+        <div class="metric-value ${getClass(r.cxc_vencidas_total,'cxc')}">${fmt(r.cxc_vencidas_total)}</div>
         <div class="metric-sub">${r.cxc_vencidas_count} facturas</div>
       </div>
-      <div class="metric-cell" onclick="toggleDetail('${key}','cxp_pendientes')">
+      <div class="metric-box" data-key="${key}" data-metric="cxp_pendientes"
+           onclick="toggleDetail('${key}','cxp_pendientes')">
         <div class="metric-label">CxP Pendiente</div>
-        <div class="metric-value ${cxpClass}">${fmt(r.cxp_pendientes_total)}</div>
+        <div class="metric-value ${getClass(r.cxp_pendientes_total,'cxp')}">${fmt(r.cxp_pendientes_total)}</div>
         <div class="metric-sub">${r.cxp_pendientes_count} facturas</div>
       </div>
-      <div class="metric-cell" onclick="toggleDetail('${key}','pagos_mes')">
+      <div class="metric-box" data-key="${key}" data-metric="pagos_mes"
+           onclick="toggleDetail('${key}','pagos_mes')">
         <div class="metric-label">Pagos del Mes</div>
-        <div class="metric-value">${fmt(r.pagos_mes_total)}</div>
+        <div class="metric-value blue">${fmt(r.pagos_mes_total)}</div>
         <div class="metric-sub">${r.pagos_mes_count} pagos</div>
       </div>
-      <div class="metric-cell" onclick="toggleDetail('${key}','sin_timbrar')">
+      <div class="metric-box" data-key="${key}" data-metric="sin_timbrar"
+           onclick="toggleDetail('${key}','sin_timbrar')">
         <div class="metric-label">Sin Timbrar</div>
-        <div class="metric-value ${timbrClass}">${r.sin_timbrar_count}</div>
+        <div class="metric-value ${getClass(r.sin_timbrar_count,'timbrar')}">${r.sin_timbrar_count}</div>
         <div class="metric-sub">borradores</div>
       </div>
-      <div class="metric-cell" onclick="toggleDetail('${key}','facturas_proveedor')" style="grid-column:1/-1">
-        <div class="metric-label">Facturas Proveedor (mes)</div>
-        <div class="metric-value">${fmt(r.facturas_proveedor_total)}</div>
+      <div class="metric-box wide" data-key="${key}" data-metric="facturas_proveedor"
+           onclick="toggleDetail('${key}','facturas_proveedor')">
+        <div class="metric-label">Facturas de Proveedor (mes)</div>
+        <div class="metric-value dark">${fmt(r.facturas_proveedor_total)}</div>
         <div class="metric-sub">${r.facturas_proveedor_count} facturas · click para ver detalle</div>
       </div>
     </div>
-    <div class="detail-panel" id="detail-${key}"></div>
+    <div class="detail-drawer" id="drawer-${key}"></div>
   </div>`;
 }
 
 function renderGrid() {
   document.getElementById('clients-grid').innerHTML =
-    Object.keys(CLIENTES_META).map(renderCard).join('');
+    Object.keys(CLIENTES).map(renderCard).join('');
 }
 
-async function loadCliente(key) {
+async function loadOne(key, force=false) {
   try {
-    const r = await fetch(`${API}/api/metricas/${key}`);
+    const r = await fetch(`${API}/api/metricas/${key}${force?'?force=true':''}`);
     state[key] = await r.json();
   } catch(e) {
-    state[key] = { status:'error', error:'No se pudo conectar al servidor', resumen:{}, detalle:{} };
+    state[key] = {status:'error',error:'Sin conexión al servidor XTELA',resumen:{},detalle:{}};
   }
   renderGrid();
-  renderStatusBar();
+  renderStatus();
   renderSummary();
 }
 
 async function refreshAll(force=false) {
   const btn = document.getElementById('refresh-btn');
   btn.classList.add('loading');
-  btn.textContent = '↺ ACTUALIZANDO...';
-  state = {};
+  btn.textContent = '↺ Actualizando...';
+  if (force) state = {};
   renderGrid();
-  renderStatusBar();
-
-  const promises = Object.keys(CLIENTES_META).map(key => {
-    const url = force ? `${API}/api/metricas/${key}?force=true` : `${API}/api/metricas/${key}`;
-    return fetch(url)
-      .then(r => r.json())
-      .then(d => { state[key] = d; })
-      .catch(() => { state[key] = { status:'error', error:'Sin conexión', resumen:{}, detalle:{} }; })
-      .finally(() => { renderGrid(); renderStatusBar(); renderSummary(); });
-  });
-
-  await Promise.all(promises);
+  renderStatus();
+  await Promise.all(Object.keys(CLIENTES).map(k => loadOne(k, force)));
   btn.classList.remove('loading');
-  btn.textContent = '↺ ACTUALIZAR TODO';
-  document.getElementById('last-update').textContent =
-    'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
+  btn.textContent = '↺ Actualizar';
+  const ts = new Date().toLocaleTimeString('es-MX');
+  document.getElementById('last-update').textContent = 'Actualizado: ' + ts;
+  document.getElementById('footer-ts').textContent = ts;
 }
 
-// Auto-refresh cada 5 minutos
-setInterval(() => refreshAll(false), 5 * 60 * 1000);
-
-// Inicial
+setInterval(() => refreshAll(false), 5*60*1000);
 refreshAll();
 </script>
 </body>
