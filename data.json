@@ -1,0 +1,400 @@
+{
+  "generado": "2026-04-20T02:48:16.735989",
+  "clientes": {
+    "mayan_zero": {
+      "nombre": "Mayan Zero",
+      "color": "#2b3a8f",
+      "tipo": "Interno",
+      "status": "error",
+      "error": "<Fault 3: 'Access Denied'>",
+      "ultima_actualizacion": "02:48",
+      "resumen": {},
+      "detalle": {}
+    },
+    "mayan_kakaw": {
+      "nombre": "Mayan Kakaw",
+      "color": "#c47f1a",
+      "tipo": "Cliente",
+      "status": "error",
+      "error": "<Fault 3: 'Access Denied'>",
+      "ultima_actualizacion": "02:48",
+      "resumen": {},
+      "detalle": {}
+    },
+    "moonshift": {
+      "nombre": "Moonshift / EVIRAT",
+      "color": "#4e6de8",
+      "tipo": "Cliente",
+      "status": "ok",
+      "ultima_actualizacion": "02:48",
+      "resumen": {
+        "cxc_vencidas_total": 135100.08,
+        "cxc_vencidas_count": 7,
+        "cxp_pendientes_total": 417512.32,
+        "cxp_pendientes_count": 50,
+        "pagos_mes_total": 0,
+        "pagos_mes_count": 0,
+        "sin_timbrar_count": 0,
+        "facturas_proveedor_total": 42737.02,
+        "facturas_proveedor_count": 4
+      },
+      "detalle": {
+        "cxc_vencidas": [
+          {
+            "id": 1086,
+            "name": "INV/2026/00017",
+            "partner_id": "PIZZERIA Y CERVECERIA",
+            "amount_residual": 2475.0,
+            "invoice_date_due": "2026-04-10"
+          },
+          {
+            "id": 1083,
+            "name": "INV/2026/00016",
+            "partner_id": "PACHUCO VINOS Y LICORES, Diego",
+            "amount_residual": 17850.0,
+            "invoice_date_due": "2026-04-10"
+          },
+          {
+            "id": 1082,
+            "name": "INV/2026/00015",
+            "partner_id": "OPERACION CON SENTIDO",
+            "amount_residual": 3850.0,
+            "invoice_date_due": "2026-04-10"
+          },
+          {
+            "id": 1042,
+            "name": "INV/2026/00010",
+            "partner_id": "PACHUCO VINOS Y LICORES",
+            "amount_residual": 60000.0,
+            "invoice_date_due": "2026-03-20"
+          },
+          {
+            "id": 984,
+            "name": "INV/2026/00007",
+            "partner_id": "PIZZERIA Y CERVECERIA",
+            "amount_residual": 2475.0,
+            "invoice_date_due": "2026-02-26"
+          },
+          {
+            "id": 805,
+            "name": "INV/2025/00028",
+            "partner_id": "PACHUCO VINOS Y LICORES",
+            "amount_residual": 32400.0,
+            "invoice_date_due": "2025-12-17"
+          },
+          {
+            "id": 6,
+            "name": "INV/2025/00004",
+            "partner_id": "PACHUCO VINOS Y LICORES",
+            "amount_residual": 16050.08,
+            "invoice_date_due": "2025-01-31"
+          }
+        ],
+        "cxp_pendientes": [
+          {
+            "id": 1096,
+            "name": "BILL/2026/04/0004",
+            "partner_id": "ENVASES AMERICA",
+            "amount_residual": 403.68,
+            "invoice_date_due": "2026-04-13"
+          },
+          {
+            "id": 1095,
+            "name": "BILL/2026/04/0003",
+            "partner_id": "KPTL MEXICO BANK, SOCIEDAD ANONIMA, INSTITUCION DE BANCA MULTIPLE, KAPITAL MEXICO GRUPO FINANCIERO",
+            "amount_residual": 104.4,
+            "invoice_date_due": "2026-04-13"
+          },
+          {
+            "id": 1093,
+            "name": "BILL/2026/03/0009",
+            "partner_id": "MAYAN ZERO CONSULTORIA",
+            "amount_residual": 23850.0,
+            "invoice_date_due": "2026-03-31"
+          },
+          {
+            "id": 1092,
+            "name": "BILL/2026/03/0008",
+            "partner_id": "MAYAN ZERO CONSULTORIA",
+            "amount_residual": 15000.0,
+            "invoice_date_due": "2026-03-31"
+          },
+          {
+            "id": 1044,
+            "name": "BILL/2026/03/0002",
+            "partner_id": "DIEGO JIMENEZ GARCIA",
+            "amount_residual": 8932.0,
+            "invoice_date_due": "2026-03-22"
+          },
+          {
+            "id": 1089,
+            "name": "BILL/2026/03/0005",
+            "partner_id": "ENVASES AMERICA",
+            "amount_residual": 807.36,
+            "invoice_date_due": "2026-03-31"
+          },
+          {
+            "id": 1091,
+            "name": "BILL/2026/03/0007",
+            "partner_id": "MAYAN ZERO CONSULTORIA",
+            "amount_residual": 34450.0,
+            "invoice_date_due": "2026-03-31"
+          },
+          {
+            "id": 1094,
+            "name": "BILL/2026/03/0010",
+            "partner_id": "OPERADORA DE SERVICIOS PAQUETEXPRESS",
+            "amount_residual": 4519.52,
+            "invoice_date_due": "2026-03-31"
+          },
+          {
+            "id": 1087,
+            "name": "BILL/2026/03/0003",
+            "partner_id": "DHL EXPRESS MEXICO",
+            "amount_residual": 1965.79,
+            "invoice_date_due": "2026-03-31"
+          },
+          {
+            "id": 1088,
+            "name": "BILL/2026/03/0004",
+            "partner_id": "EDGAR ISRAEL ALVAREZ VAZQUEZ",
+            "amount_residual": 1467.41,
+            "invoice_date_due": "2026-03-31"
+          }
+        ],
+        "pagos_mes": [],
+        "sin_timbrar": [],
+        "facturas_proveedor": [
+          {
+            "id": 1096,
+            "name": "BILL/2026/04/0004",
+            "partner_id": "ENVASES AMERICA",
+            "amount_total": 403.68,
+            "invoice_date": "2026-04-07",
+            "payment_state": "not_paid"
+          },
+          {
+            "id": 1078,
+            "name": "BILL/2026/04/0002",
+            "partner_id": "PRODUCTORA AGAVERA ALMA DE JUDAS",
+            "amount_total": 42107.04,
+            "invoice_date": "2026-04-07",
+            "payment_state": "paid"
+          },
+          {
+            "id": 1095,
+            "name": "BILL/2026/04/0003",
+            "partner_id": "KPTL MEXICO BANK, SOCIEDAD ANONIMA, INSTITUCION DE BANCA MULTIPLE, KAPITAL MEXICO GRUPO FINANCIERO",
+            "amount_total": 104.4,
+            "invoice_date": "2026-04-02",
+            "payment_state": "not_paid"
+          },
+          {
+            "id": 1067,
+            "name": "BILL/2026/04/0001",
+            "partner_id": "OPERADORA OMX",
+            "amount_total": 121.9,
+            "invoice_date": "2026-04-01",
+            "payment_state": "paid"
+          }
+        ]
+      }
+    },
+    "agua_tulum": {
+      "nombre": "Agua de Tulum",
+      "color": "#1e7a4a",
+      "tipo": "Cliente",
+      "status": "ok",
+      "ultima_actualizacion": "02:48",
+      "resumen": {
+        "cxc_vencidas_total": 160926.4,
+        "cxc_vencidas_count": 50,
+        "cxp_pendientes_total": 4084.3,
+        "cxp_pendientes_count": 4,
+        "pagos_mes_total": 0,
+        "pagos_mes_count": 0,
+        "sin_timbrar_count": 50,
+        "facturas_proveedor_total": 0,
+        "facturas_proveedor_count": 0
+      },
+      "detalle": {
+        "cxc_vencidas": [
+          {
+            "id": 3709,
+            "name": "INV/2026/00312",
+            "partner_id": "UBUNTU HOTELS",
+            "amount_residual": 4100.0,
+            "invoice_date_due": "2026-04-18"
+          },
+          {
+            "id": 3697,
+            "name": "INV/2026/00311",
+            "partner_id": "JORGE FRANCISCO MORALES AGUILAR",
+            "amount_residual": 12933.6,
+            "invoice_date_due": "2026-04-17"
+          },
+          {
+            "id": 3676,
+            "name": "INV/2026/00310",
+            "partner_id": "LIVEK DEL CARIBE",
+            "amount_residual": 17800.0,
+            "invoice_date_due": "2026-04-15"
+          },
+          {
+            "id": 3672,
+            "name": "INV/2026/00308",
+            "partner_id": "ENCANTO SOFISTICADO",
+            "amount_residual": 1920.0,
+            "invoice_date_due": "2026-04-04"
+          },
+          {
+            "id": 3658,
+            "name": "INV/2026/00306",
+            "partner_id": "MARIANNE IZASKUN AZNAR BERNAT",
+            "amount_residual": 960.0,
+            "invoice_date_due": "2026-04-11"
+          },
+          {
+            "id": 3657,
+            "name": "INV/2026/00305",
+            "partner_id": "MARIANNE IZASKUN AZNAR BERNAT",
+            "amount_residual": 820.0,
+            "invoice_date_due": "2026-04-10"
+          },
+          {
+            "id": 3656,
+            "name": "INV/2026/00304",
+            "partner_id": "JORGE FRANCISCO MORALES AGUILAR",
+            "amount_residual": 2881.8,
+            "invoice_date_due": "2026-04-09"
+          },
+          {
+            "id": 3644,
+            "name": "INV/2026/00298",
+            "partner_id": "STORY HORSE",
+            "amount_residual": 480.0,
+            "invoice_date_due": "2026-04-07"
+          },
+          {
+            "id": 3641,
+            "name": "INV/2026/00297",
+            "partner_id": "ONYX TULUM RESTAURANT BAR",
+            "amount_residual": 3980.0,
+            "invoice_date_due": "2026-04-07"
+          },
+          {
+            "id": 3622,
+            "name": "INV/2026/00296",
+            "partner_id": "JORGE FRANCISCO MORALES AGUILAR",
+            "amount_residual": 7183.8,
+            "invoice_date_due": "2026-04-04"
+          }
+        ],
+        "cxp_pendientes": [
+          {
+            "id": 836,
+            "name": "BILL/2025/07/0001",
+            "partner_id": "GLASS AND GLASS",
+            "amount_residual": 10.0,
+            "invoice_date_due": "2025-08-23"
+          },
+          {
+            "id": 306,
+            "name": "BILL/2025/01/0003",
+            "partner_id": "TRANSFORMADORA AKHUA",
+            "amount_residual": 9.61,
+            "invoice_date_due": "2025-04-23"
+          },
+          {
+            "id": 305,
+            "name": "BILL/2025/01/0002",
+            "partner_id": "SERVICIO JARDINES",
+            "amount_residual": 1064.69,
+            "invoice_date_due": "2025-04-23"
+          },
+          {
+            "id": 304,
+            "name": "BILL/2025/01/0001",
+            "partner_id": "MAYAN ZERO CONSULTORIA",
+            "amount_residual": 3000.0,
+            "invoice_date_due": "2025-04-23"
+          }
+        ],
+        "pagos_mes": [],
+        "sin_timbrar": [
+          {
+            "id": 3552,
+            "name": "INV/2026/00275",
+            "partner_id": "LIVEK DEL CARIBE",
+            "amount_total": 13826.0,
+            "invoice_date": "2026-03-19"
+          },
+          {
+            "id": 3187,
+            "name": false,
+            "partner_id": "ANDRES",
+            "amount_total": 0.0,
+            "invoice_date": false
+          },
+          {
+            "id": 452,
+            "name": false,
+            "partner_id": "UNO",
+            "amount_total": 500.0,
+            "invoice_date": false
+          },
+          {
+            "id": 202,
+            "name": false,
+            "partner_id": "PASHA, TANIA HERRERA SALAS",
+            "amount_total": 0.0,
+            "invoice_date": false
+          },
+          {
+            "id": 133,
+            "name": "INV/2025/00051",
+            "partner_id": "DANIJ MIQUEL EHREMBERG FOLCH",
+            "amount_total": 900.0,
+            "invoice_date": "2025-01-14"
+          },
+          {
+            "id": 132,
+            "name": "INV/2025/00050",
+            "partner_id": "OBSIDIANA",
+            "amount_total": 3000.0,
+            "invoice_date": "2025-01-14"
+          },
+          {
+            "id": 129,
+            "name": "INV/2025/00047",
+            "partner_id": "CASA JAGUAR",
+            "amount_total": 2700.0,
+            "invoice_date": "2025-01-14"
+          },
+          {
+            "id": 127,
+            "name": "INV/2025/00045",
+            "partner_id": "ENCANTO SOFISTICADO",
+            "amount_total": 4500.0,
+            "invoice_date": "2025-01-14"
+          },
+          {
+            "id": 126,
+            "name": "INV/2025/00044",
+            "partner_id": "VERONICA FABIOLA ZAZUETA ESPARZA",
+            "amount_total": 2000.0,
+            "invoice_date": "2025-01-14"
+          },
+          {
+            "id": 124,
+            "name": "INV/2025/00042",
+            "partner_id": "KILOMBO",
+            "amount_total": 500.0,
+            "invoice_date": "2025-01-14"
+          }
+        ],
+        "facturas_proveedor": []
+      }
+    }
+  }
+}
