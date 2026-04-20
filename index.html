@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XTELA — Dashboard de Agentes</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #05080b;
+  --surface: #0b1018;
+  --surface2: #111820;
+  --border: #1a2535;
+  --text: #e2eaf2;
+  --muted: #4a6070;
+  --soft: #7a90a0;
+  --teal: #00d4b4;
+  --gold: #f0b429;
+  --purple: #a78bfa;
+  --blue: #3d9eff;
+  --rose: #ff5c7c;
+  --green: #4ade80;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Grid bg */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,180,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,180,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events:none;
+  z-index:0;
+}
+
+.wrapper { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:32px 24px 80px; }
+
+/* Header */
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:48px;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--border);
+}
+
+.logo {
+  font-family:'Bebas Neue', sans-serif;
+  font-size:48px;
+  letter-spacing:0.08em;
+  line-height:1;
+  color:var(--teal);
+}
+
+.logo span { color:var(--text); }
+
+.header-right {
+  text-align:right;
+}
+
+.last-update {
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:0.1em;
+}
+
+.refresh-btn {
+  margin-top:8px;
+  padding:6px 16px;
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--soft);
+  font-family:'DM Mono', monospace;
+  font-size:11px;
+  cursor:pointer;
+  letter-spacing:0.1em;
+  transition:all 0.2s;
+}
+
+.refresh-btn:hover {
+  border-color:var(--teal);
+  color:var(--teal);
+}
+
+.refresh-btn.loading {
+  opacity:0.5;
+  cursor:wait;
+}
+
+/* Status bar */
+.status-bar {
+  display:flex;
+  gap:8px;
+  margin-bottom:32px;
+  flex-wrap:wrap;
+}
+
+.status-pill {
+  font-size:10px;
+  font-family:'Syne', sans-serif;
+  font-weight:700;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  padding:4px 12px;
+  border-radius:20px;
+  border:1px solid;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.status-pill .dot {
+  width:6px; height:6px;
+  border-radius:50%;
+  background:currentColor;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity:1; }
+  50% { opacity:0.3; }
+}
+
+.pill-ok    { color:var(--green); border-color:#4ade8030; background:#4ade8008; }
+.pill-error { color:var(--rose);  border-color:#ff5c7c30; background:#ff5c7c08; }
+.pill-load  { color:var(--muted); border-color:#1a253580; background:transparent; }
+
+/* Clients grid */
+.clients-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap:2px;
+}
+
+/* Client card */
+.client-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+  transition:border-color 0.3s;
+}
+
+.client-card:hover { border-color:var(--card-color); }
+
+.client-card::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:2px;
+  background:var(--card-color);
+}
+
+.client-card::after {
+  content:'';
+  position:absolute;
+  top:-80px; right:-80px;
+  width:200px; height:200px;
+  background:radial-gradient(circle, var(--card-color) 0%, transparent 70%);
+  opacity:0.05;
+  pointer-events:none;
+}
+
+.card-header {
+  padding:20px 24px 16px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.client-name {
+  font-family:'Syne', sans-serif;
+  font-size:15px;
+  font-weight:800;
+  color:var(--card-color);
+  letter-spacing:-0.01em;
+}
+
+.client-type {
+  font-size:9px;
+  font-family:'Syne', sans-serif;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding:2px 8px;
+  border:1px solid var(--border);
+  border-radius:3px;
+}
+
+/* Metrics grid inside card */
+.metrics-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--border);
+  border-bottom:1px solid var(--border);
+}
+
+.metric-cell {
+  background:var(--surface);
+  padding:16px 20px;
+  cursor:pointer;
+  transition:background 0.15s;
+}
+
+.metric-cell:hover { background:var(--surface2); }
+
+.metric-cell.active { background:var(--surface2); }
+
+.metric-label {
+  font-size:9px;
+  font-family:'Syne', sans-serif;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.metric-value {
+  font-family:'Bebas Neue', sans-serif;
+  font-size:28px;
+  letter-spacing:0.03em;
+  line-height:1;
+  color:var(--card-color);
+}
+
+.metric-value.alert { color:var(--rose); }
+.metric-value.warning { color:var(--gold); }
+.metric-value.ok { color:var(--green); }
+
+.metric-sub {
+  font-size:10px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* Detail panel */
+.detail-panel {
+  padding:0;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.3s;
+}
+
+.detail-panel.open {
+  max-height:400px;
+  padding:16px 20px;
+  overflow-y:auto;
+}
+
+.detail-title {
+  font-size:10px;
+  font-family:'Syne', sans-serif;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--soft);
+  margin-bottom:12px;
+}
+
+.detail-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 0;
+  border-bottom:1px solid var(--border);
+  font-size:11px;
+  gap:12px;
+}
+
+.detail-row:last-child { border-bottom:none; }
+
+.detail-partner {
+  color:var(--soft);
+  flex:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.detail-amount {
+  color:var(--card-color);
+  font-weight:500;
+  white-space:nowrap;
+}
+
+.detail-date {
+  color:var(--muted);
+  font-size:10px;
+  white-space:nowrap;
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
+  background-size:200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius:4px;
+  height:28px;
+}
+
+@keyframes shimmer {
+  0% { background-position:200% 0; }
+  100% { background-position:-200% 0; }
+}
+
+/* Error state */
+.error-state {
+  padding:32px 24px;
+  text-align:center;
+}
+
+.error-icon { font-size:32px; margin-bottom:12px; }
+.error-msg { font-size:12px; color:var(--rose); line-height:1.6; }
+
+/* Summary row */
+.summary-row {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:2px;
+  margin-bottom:32px;
+  border:1px solid var(--border);
+}
+
+.summary-cell {
+  background:var(--surface);
+  padding:20px 24px;
+}
+
+.summary-label {
+  font-size:9px;
+  font-family:'Syne', sans-serif;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.summary-value {
+  font-family:'Bebas Neue', sans-serif;
+  font-size:36px;
+  color:var(--teal);
+  letter-spacing:0.03em;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+@media(max-width:680px) {
+  .clients-grid { grid-template-columns:1fr; }
+  .logo { font-size:36px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div>
+      <div class="logo">XTELA<span>.</span></div>
+      <div style="font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-top:4px;">DASHBOARD DE AGENTES · VISTA MAESTRA</div>
+    </div>
+    <div class="header-right">
+      <div class="last-update" id="last-update">Cargando...</div>
+      <button class="refresh-btn" onclick="refreshAll()" id="refresh-btn">↺ ACTUALIZAR TODO</button>
+    </div>
+  </header>
+
+  <!-- Status pills -->
+  <div class="status-bar" id="status-bar"></div>
+
+  <!-- Summary totals -->
+  <div class="summary-row" id="summary-row">
+    <div class="summary-cell"><div class="summary-label">CxC Vencida Total</div><div class="summary-value skeleton" style="width:120px"></div></div>
+    <div class="summary-cell"><div class="summary-label">CxP Pendiente Total</div><div class="summary-value skeleton" style="width:120px"></div></div>
+    <div class="summary-cell"><div class="summary-label">Pagos del Mes</div><div class="summary-value skeleton" style="width:120px"></div></div>
+    <div class="summary-cell"><div class="summary-label">Sin Timbrar</div><div class="summary-value skeleton" style="width:60px"></div></div>
+  </div>
+
+  <!-- Client cards -->
+  <div class="clients-grid" id="clients-grid"></div>
+
+</div>
+
+<script>
+const API = 'http://34.27.77.64:8090';
+
+const CLIENTES_META = {
+  mayan_zero:   { nombre:'Mayan Zero',        color:'#00d4b4', tipo:'interno'  },
+  mayan_kakaw:  { nombre:'Mayan Kakaw',        color:'#f0b429', tipo:'cliente'  },
+  moonshift:    { nombre:'Moonshift / EVIRAT', color:'#a78bfa', tipo:'cliente'  },
+  agua_tulum:   { nombre:'Agua de Tulum',      color:'#3d9eff', tipo:'cliente'  },
+};
+
+let state = {};
+let activeDetail = {};
+
+function fmt(n) {
+  if (!n && n !== 0) return '—';
+  return '$' + Number(n).toLocaleString('es-MX', {minimumFractionDigits:0, maximumFractionDigits:0});
+}
+
+function fmtDate(s) {
+  if (!s) return '';
+  return s.substring(0,10);
+}
+
+function partnerName(p) {
+  if (!p) return '—';
+  if (Array.isArray(p)) return p[1] || '—';
+  return p;
+}
+
+function renderStatusBar() {
+  const bar = document.getElementById('status-bar');
+  bar.innerHTML = Object.entries(CLIENTES_META).map(([key, meta]) => {
+    const d = state[key];
+    let cls = 'pill-load', label = 'CARGANDO';
+    if (d) {
+      cls   = d.status === 'ok' ? 'pill-ok' : 'pill-error';
+      label = d.status === 'ok' ? 'CONECTADO' : 'ERROR';
+    }
+    return `<div class="status-pill ${cls}">
+      <span class="dot"></span>
+      <span style="color:${meta.color}">${meta.nombre}</span>
+      <span>${label}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderSummary() {
+  let totalCxc=0, totalCxp=0, totalPagos=0, totalSinTimbrar=0;
+  Object.values(state).forEach(d => {
+    if (d?.status === 'ok' && d.resumen) {
+      totalCxc        += d.resumen.cxc_vencidas_total    || 0;
+      totalCxp        += d.resumen.cxp_pendientes_total  || 0;
+      totalPagos      += d.resumen.pagos_mes_total       || 0;
+      totalSinTimbrar += d.resumen.sin_timbrar_count     || 0;
+    }
+  });
+
+  document.getElementById('summary-row').innerHTML = `
+    <div class="summary-cell">
+      <div class="summary-label">CxC Vencida Total</div>
+      <div class="summary-value" style="color:var(--rose)">${fmt(totalCxc)}</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-label">CxP Pendiente Total</div>
+      <div class="summary-value" style="color:var(--gold)">${fmt(totalCxp)}</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-label">Pagos del Mes</div>
+      <div class="summary-value" style="color:var(--teal)">${fmt(totalPagos)}</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-label">Sin Timbrar</div>
+      <div class="summary-value" style="color:${totalSinTimbrar > 0 ? 'var(--rose)' : 'var(--green)'}">${totalSinTimbrar}</div>
+    </div>
+  `;
+}
+
+function toggleDetail(key, metric) {
+  const panel = document.getElementById(`detail-${key}`);
+  if (activeDetail[key] === metric) {
+    panel.classList.remove('open');
+    activeDetail[key] = null;
+    return;
+  }
+  activeDetail[key] = metric;
+  panel.classList.add('open');
+
+  const d = state[key];
+  if (!d?.detalle) return;
+
+  const items = d.detalle[metric] || [];
+  const titles = {
+    cxc_vencidas:       'Cuentas por Cobrar Vencidas',
+    cxp_pendientes:     'Cuentas por Pagar Pendientes',
+    pagos_mes:          'Pagos del Mes',
+    sin_timbrar:        'Facturas sin Timbrar',
+    facturas_proveedor: 'Facturas de Proveedor',
+  };
+
+  if (!items.length) {
+    panel.innerHTML = `<div class="detail-title">${titles[metric]}</div><div style="font-size:11px;color:var(--muted);padding:8px 0">Sin registros</div>`;
+    return;
+  }
+
+  const rows = items.map(r => {
+    const amount = r.amount_residual ?? r.amount ?? r.amount_total ?? 0;
+    const date   = r.invoice_date_due ?? r.date ?? r.invoice_date ?? '';
+    return `<div class="detail-row">
+      <span class="detail-partner">${partnerName(r.partner_id)}</span>
+      <span class="detail-date">${fmtDate(date)}</span>
+      <span class="detail-amount">${fmt(amount)}</span>
+    </div>`;
+  }).join('');
+
+  panel.innerHTML = `<div class="detail-title">${titles[metric]} (${items.length})</div>${rows}`;
+}
+
+function renderCard(key) {
+  const meta = CLIENTES_META[key];
+  const d    = state[key];
+
+  if (!d) {
+    return `<div class="client-card" style="--card-color:${meta.color}">
+      <div class="card-header">
+        <div class="client-name">${meta.nombre}</div>
+        <div class="client-type">${meta.tipo}</div>
+      </div>
+      <div style="padding:32px;text-align:center">
+        <div class="skeleton" style="width:80%;margin:0 auto 8px"></div>
+        <div class="skeleton" style="width:60%;margin:0 auto"></div>
+      </div>
+    </div>`;
+  }
+
+  if (d.status === 'error') {
+    return `<div class="client-card" style="--card-color:${meta.color}">
+      <div class="card-header">
+        <div class="client-name">${meta.nombre}</div>
+        <div class="client-type">${meta.tipo}</div>
+      </div>
+      <div class="error-state">
+        <div class="error-icon">⚠️</div>
+        <div class="error-msg">${d.error || 'Error de conexión'}</div>
+      </div>
+    </div>`;
+  }
+
+  const r = d.resumen;
+  const cxcClass    = r.cxc_vencidas_count > 0 ? 'alert' : 'ok';
+  const cxpClass    = r.cxp_pendientes_count > 0 ? 'warning' : 'ok';
+  const timbrClass  = r.sin_timbrar_count > 0 ? 'alert' : 'ok';
+
+  return `<div class="client-card" style="--card-color:${meta.color}">
+    <div class="card-header">
+      <div class="client-name">${meta.nombre}</div>
+      <div class="client-type">${meta.tipo}</div>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-cell" onclick="toggleDetail('${key}','cxc_vencidas')">
+        <div class="metric-label">CxC Vencida</div>
+        <div class="metric-value ${cxcClass}">${fmt(r.cxc_vencidas_total)}</div>
+        <div class="metric-sub">${r.cxc_vencidas_count} facturas</div>
+      </div>
+      <div class="metric-cell" onclick="toggleDetail('${key}','cxp_pendientes')">
+        <div class="metric-label">CxP Pendiente</div>
+        <div class="metric-value ${cxpClass}">${fmt(r.cxp_pendientes_total)}</div>
+        <div class="metric-sub">${r.cxp_pendientes_count} facturas</div>
+      </div>
+      <div class="metric-cell" onclick="toggleDetail('${key}','pagos_mes')">
+        <div class="metric-label">Pagos del Mes</div>
+        <div class="metric-value">${fmt(r.pagos_mes_total)}</div>
+        <div class="metric-sub">${r.pagos_mes_count} pagos</div>
+      </div>
+      <div class="metric-cell" onclick="toggleDetail('${key}','sin_timbrar')">
+        <div class="metric-label">Sin Timbrar</div>
+        <div class="metric-value ${timbrClass}">${r.sin_timbrar_count}</div>
+        <div class="metric-sub">borradores</div>
+      </div>
+      <div class="metric-cell" onclick="toggleDetail('${key}','facturas_proveedor')" style="grid-column:1/-1">
+        <div class="metric-label">Facturas Proveedor (mes)</div>
+        <div class="metric-value">${fmt(r.facturas_proveedor_total)}</div>
+        <div class="metric-sub">${r.facturas_proveedor_count} facturas · click para ver detalle</div>
+      </div>
+    </div>
+    <div class="detail-panel" id="detail-${key}"></div>
+  </div>`;
+}
+
+function renderGrid() {
+  document.getElementById('clients-grid').innerHTML =
+    Object.keys(CLIENTES_META).map(renderCard).join('');
+}
+
+async function loadCliente(key) {
+  try {
+    const r = await fetch(`${API}/api/metricas/${key}`);
+    state[key] = await r.json();
+  } catch(e) {
+    state[key] = { status:'error', error:'No se pudo conectar al servidor', resumen:{}, detalle:{} };
+  }
+  renderGrid();
+  renderStatusBar();
+  renderSummary();
+}
+
+async function refreshAll(force=false) {
+  const btn = document.getElementById('refresh-btn');
+  btn.classList.add('loading');
+  btn.textContent = '↺ ACTUALIZANDO...';
+  state = {};
+  renderGrid();
+  renderStatusBar();
+
+  const promises = Object.keys(CLIENTES_META).map(key => {
+    const url = force ? `${API}/api/metricas/${key}?force=true` : `${API}/api/metricas/${key}`;
+    return fetch(url)
+      .then(r => r.json())
+      .then(d => { state[key] = d; })
+      .catch(() => { state[key] = { status:'error', error:'Sin conexión', resumen:{}, detalle:{} }; })
+      .finally(() => { renderGrid(); renderStatusBar(); renderSummary(); });
+  });
+
+  await Promise.all(promises);
+  btn.classList.remove('loading');
+  btn.textContent = '↺ ACTUALIZAR TODO';
+  document.getElementById('last-update').textContent =
+    'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
+}
+
+// Auto-refresh cada 5 minutos
+setInterval(() => refreshAll(false), 5 * 60 * 1000);
+
+// Inicial
+refreshAll();
+</script>
+</body>
+</html>
