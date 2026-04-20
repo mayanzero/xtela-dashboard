@@ -30,493 +30,124 @@
   --shadow: 0 2px 16px rgba(43,58,143,0.08);
   --shadow-md: 0 4px 24px rgba(43,58,143,0.12);
 }
-
 * { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Nunito Sans',sans-serif; min-height:100vh; }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Nunito Sans', sans-serif;
-  min-height: 100vh;
-}
-
-/* ── NAVBAR ── */
 nav {
-  background: var(--surface);
-  height: 64px;
-  padding: 0 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 1px 0 var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background:var(--surface); height:64px; padding:0 32px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:0 1px 0 var(--border); position:sticky; top:0; z-index:100;
 }
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* SVG Logo inline */
-.nav-logo svg {
-  width: 36px;
-  height: 36px;
-}
-
-.nav-name {
-  font-family: 'Nunito', sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--blue-dark);
-  letter-spacing: -0.03em;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.nav-time {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--soft);
-  letter-spacing: 0.02em;
-}
-
+.nav-brand { display:flex; align-items:center; gap:12px; }
+.nav-name { font-family:'Nunito',sans-serif; font-size:20px; font-weight:800; color:var(--blue-dark); letter-spacing:-0.03em; }
+.nav-right { display:flex; align-items:center; gap:16px; }
+.nav-time { font-size:12px; font-weight:600; color:var(--soft); }
 .btn-refresh {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 18px;
-  background: var(--blue);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  display:flex; align-items:center; gap:6px;
+  padding:8px 18px; background:var(--blue); color:#fff;
+  border:none; border-radius:8px; font-family:'Nunito Sans',sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:0.04em; cursor:pointer; transition:background 0.2s;
 }
+.btn-refresh:hover { background:var(--blue-dark); }
+.btn-refresh.loading { opacity:0.6; cursor:wait; }
 
-.btn-refresh:hover { background: var(--blue-dark); }
-.btn-refresh:active { transform: scale(0.97); }
-.btn-refresh.loading { opacity: 0.6; cursor: wait; }
+.page { max-width:1320px; margin:0 auto; padding:28px 24px 60px; }
+.page-header { margin-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px; }
+.page-title { font-family:'Nunito',sans-serif; font-size:28px; font-weight:900; color:var(--text); letter-spacing:-0.03em; }
+.page-sub { font-size:13px; color:var(--muted); margin-top:2px; }
 
-/* ── PAGE ── */
-.page {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 28px 24px 60px;
-}
+.status-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+.pill { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; letter-spacing:0.04em; padding:5px 12px; border-radius:20px; border:1.5px solid; }
+.pill-ok    { color:var(--green); border-color:#9fd4b8; background:var(--green-light); }
+.pill-error { color:var(--red);   border-color:#f0b0b0; background:var(--red-light); }
+.pill-load  { color:var(--soft);  border-color:var(--border2); background:var(--surface); }
+.pill-dot { width:6px; height:6px; border-radius:50%; background:currentColor; animation:blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-/* ── PAGE HEADER ── */
-.page-header {
-  margin-bottom: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 12px;
-}
+.summary-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px; }
+.sum-card { background:var(--surface); border-radius:12px; padding:20px 22px; box-shadow:var(--shadow); border:1px solid var(--border); position:relative; overflow:hidden; }
+.sum-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--card-accent); border-radius:12px 12px 0 0; }
+.sum-label { font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+.sum-value { font-family:'Nunito',sans-serif; font-size:32px; font-weight:900; letter-spacing:-0.03em; line-height:1; }
+.sum-value.red  { color:var(--red); }
+.sum-value.gold { color:var(--gold); }
+.sum-value.blue { color:var(--blue); }
+.sum-value.text { color:var(--text); }
+.sum-sub { font-size:11px; color:var(--soft); margin-top:6px; }
 
-.page-title {
-  font-family: 'Nunito', sans-serif;
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--text);
-  letter-spacing: -0.03em;
-}
+.clients-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:16px; }
+.client-card { background:var(--surface); border-radius:14px; box-shadow:var(--shadow); border:1px solid var(--border); overflow:hidden; transition:box-shadow 0.2s,transform 0.2s; }
+.client-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+.card-top { padding:18px 20px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); background:linear-gradient(135deg,var(--blue-light) 0%,#fff 60%); }
+.card-name { font-family:'Nunito',sans-serif; font-size:17px; font-weight:800; color:var(--text); letter-spacing:-0.02em; display:flex; align-items:center; gap:8px; }
+.card-dot { width:10px; height:10px; border-radius:50%; background:var(--card-color); flex-shrink:0; }
+.card-tag { font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; background:var(--blue-pale); color:var(--blue); }
+.card-ts { font-size:10px; color:var(--soft); padding:6px 20px; border-bottom:1px solid var(--border); background:var(--surface2); }
 
-.page-sub {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--muted);
-  margin-top: 2px;
-}
+.metrics-wrap { padding:16px 20px; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.metric-box { background:var(--surface2); border-radius:10px; padding:14px 16px; cursor:pointer; border:1.5px solid transparent; transition:all 0.15s; }
+.metric-box:hover { border-color:var(--blue-mid); background:var(--blue-light); }
+.metric-box.active { border-color:var(--blue); background:var(--blue-light); }
+.metric-box.wide { grid-column:1/-1; }
+.metric-label { font-size:10px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.metric-value { font-family:'Nunito',sans-serif; font-size:26px; font-weight:900; letter-spacing:-0.03em; line-height:1; }
+.metric-value.red   { color:var(--red); }
+.metric-value.gold  { color:var(--gold); }
+.metric-value.blue  { color:var(--blue); }
+.metric-value.green { color:var(--green); }
+.metric-value.dark  { color:var(--text); }
+.metric-sub { font-size:10px; color:var(--soft); margin-top:4px; }
 
-/* ── STATUS PILLS ── */
-.status-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-}
+.detail-drawer { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+.detail-drawer.open { max-height:380px; overflow-y:auto; }
+.detail-inner { margin:0 20px 16px; background:var(--surface2); border-radius:10px; overflow:hidden; border:1px solid var(--border); }
+.detail-head { padding:10px 16px; background:var(--blue-light); font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue-dark); border-bottom:1px solid var(--blue-pale); }
+.detail-row { display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-bottom:1px solid var(--border); gap:10px; font-size:12px; }
+.detail-row:last-child { border-bottom:none; }
+.detail-partner { color:var(--text); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:600; }
+.detail-date { color:var(--soft); font-size:11px; white-space:nowrap; }
+.detail-amount { font-weight:800; white-space:nowrap; color:var(--blue-dark); font-family:'Nunito',sans-serif; }
 
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1.5px solid;
-}
+.sk { background:linear-gradient(90deg,var(--surface2) 25%,var(--border) 50%,var(--surface2) 75%); background-size:200% 100%; animation:shimmer 1.5s infinite; border-radius:8px; }
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-.pill-ok    { color: var(--green); border-color: #9fd4b8; background: var(--green-light); }
-.pill-error { color: var(--red);   border-color: #f0b0b0; background: var(--red-light);   }
-.pill-load  { color: var(--soft);  border-color: var(--border2); background: var(--surface); }
+.error-card { padding:24px 20px; display:flex; align-items:flex-start; gap:12px; }
+.error-msg { font-size:12px; color:var(--red); font-weight:600; line-height:1.5; }
 
-.pill-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  animation: blink 2s infinite;
-}
+footer { margin-top:40px; padding:16px 0; display:flex; justify-content:space-between; align-items:center; font-size:11px; color:var(--soft); border-top:1px solid var(--border); }
 
-@keyframes blink {
-  0%,100%{opacity:1} 50%{opacity:0.3}
-}
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:4px; }
 
-/* ── SUMMARY CARDS ── */
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 28px;
-}
-
-.sum-card {
-  background: var(--surface);
-  border-radius: 12px;
-  padding: 20px 22px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-}
-
-.sum-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--card-accent);
-  border-radius: 12px 12px 0 0;
-}
-
-.sum-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 10px;
-}
-
-.sum-value {
-  font-family: 'Nunito', sans-serif;
-  font-size: 32px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-
-.sum-value.red   { color: var(--red); }
-.sum-value.gold  { color: var(--gold); }
-.sum-value.blue  { color: var(--blue); }
-.sum-value.text  { color: var(--text); }
-
-.sum-sub {
-  font-size: 11px;
-  color: var(--soft);
-  margin-top: 6px;
-}
-
-/* ── CLIENT CARDS ── */
-.clients-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 16px;
-}
-
-.client-card {
-  background: var(--surface);
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  overflow: hidden;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-
-.client-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-.card-top {
-  padding: 18px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  background: linear-gradient(135deg, var(--blue-light) 0%, #fff 60%);
-}
-
-.card-name {
-  font-family: 'Nunito', sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.card-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--card-color);
-  flex-shrink: 0;
-}
-
-.card-tag {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: var(--blue-pale);
-  color: var(--blue);
-}
-
-/* Metrics */
-.metrics-wrap {
-  padding: 16px 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.metric-box {
-  background: var(--surface2);
-  border-radius: 10px;
-  padding: 14px 16px;
-  cursor: pointer;
-  border: 1.5px solid transparent;
-  transition: all 0.15s;
-}
-
-.metric-box:hover {
-  border-color: var(--blue-mid);
-  background: var(--blue-light);
-}
-
-.metric-box.active {
-  border-color: var(--blue);
-  background: var(--blue-light);
-}
-
-.metric-box.wide {
-  grid-column: 1 / -1;
-}
-
-.metric-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-
-.metric-value {
-  font-family: 'Nunito', sans-serif;
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-
-.metric-value.red   { color: var(--red); }
-.metric-value.gold  { color: var(--gold); }
-.metric-value.blue  { color: var(--blue); }
-.metric-value.green { color: var(--green); }
-.metric-value.dark  { color: var(--text); }
-
-.metric-sub {
-  font-size: 10px;
-  color: var(--soft);
-  margin-top: 4px;
-}
-
-/* Detail drawer */
-.detail-drawer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-}
-
-.detail-drawer.open {
-  max-height: 380px;
-  overflow-y: auto;
-}
-
-.detail-inner {
-  margin: 0 20px 16px;
-  background: var(--surface2);
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-.detail-head {
-  padding: 10px 16px;
-  background: var(--blue-light);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--blue-dark);
-  border-bottom: 1px solid var(--blue-pale);
-}
-
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  gap: 10px;
-  font-size: 12px;
-}
-
-.detail-row:last-child { border-bottom: none; }
-
-.detail-partner {
-  color: var(--text);
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-weight: 600;
-}
-
-.detail-date {
-  color: var(--soft);
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-.detail-amount {
-  font-weight: 800;
-  white-space: nowrap;
-  color: var(--blue-dark);
-  font-family: 'Nunito', sans-serif;
-}
-
-/* Empty state */
-.empty-detail {
-  padding: 20px 16px;
-  font-size: 12px;
-  color: var(--soft);
-  text-align: center;
-}
-
-/* Loading skeleton */
-.sk {
-  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 8px;
-}
-
-@keyframes shimmer {
-  0%{background-position:200% 0} 100%{background-position:-200% 0}
-}
-
-/* Error state */
-.error-card {
-  padding: 24px 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.error-icon {
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-.error-msg {
-  font-size: 12px;
-  color: var(--red);
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-/* Footer */
-footer {
-  margin-top: 40px;
-  padding: 16px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-  color: var(--soft);
-  border-top: 1px solid var(--border);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
-
-@media(max-width:900px) {
-  .summary-grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media(max-width:600px) {
-  .summary-grid { grid-template-columns: 1fr 1fr; }
-  .clients-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 22px; }
-  nav { padding: 0 16px; }
-  .page { padding: 20px 16px 40px; }
-}
+@media(max-width:900px) { .summary-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:600px) { .clients-grid { grid-template-columns:1fr; } .page-title { font-size:22px; } nav,.page { padding-left:16px; padding-right:16px; } }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-brand">
-    <div class="nav-logo">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#7ab3f0"/>
-            <stop offset="100%" stop-color="#2b3a8f"/>
-          </linearGradient>
-        </defs>
-        <circle cx="50" cy="50" r="48" fill="url(#g1)" opacity="0.15"/>
-        <path d="M50 15 C28 15, 12 30, 12 50 C12 65, 22 77, 38 82 C30 75, 26 64, 28 53 C30 42, 40 35, 50 35 C60 35, 68 42, 70 52 C72 62, 66 72, 56 76 C66 74, 76 64, 78 52 C80 36, 67 20, 50 15Z" fill="url(#g1)" opacity="0.5"/>
-        <path d="M50 25 C35 25, 22 36, 22 50 C22 61, 29 70, 40 74 C34 68, 32 59, 35 51 C38 43, 45 38, 52 39 C59 40, 64 47, 63 55 C62 63, 56 69, 49 70 C57 70, 65 63, 67 54 C69 43, 62 30, 50 25Z" fill="url(#g1)" opacity="0.7"/>
-        <path d="M50 35 C41 35, 33 42, 33 51 C33 58, 38 64, 46 66 C42 62, 41 56, 44 51 C47 46, 52 44, 57 46 C52 40, 50 35, 50 35Z" fill="#2b3a8f"/>
-      </svg>
-    </div>
+    <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#7ab3f0"/>
+          <stop offset="100%" stop-color="#2b3a8f"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="url(#g1)" opacity="0.15"/>
+      <path d="M50 15 C28 15,12 30,12 50 C12 65,22 77,38 82 C30 75,26 64,28 53 C30 42,40 35,50 35 C60 35,68 42,70 52 C72 62,66 72,56 76 C66 74,76 64,78 52 C80 36,67 20,50 15Z" fill="url(#g1)" opacity="0.5"/>
+      <path d="M50 25 C35 25,22 36,22 50 C22 61,29 70,40 74 C34 68,32 59,35 51 C38 43,45 38,52 39 C59 40,64 47,63 55 C62 63,56 69,49 70 C57 70,65 63,67 54 C69 43,62 30,50 25Z" fill="url(#g1)" opacity="0.7"/>
+      <path d="M50 35 C41 35,33 42,33 51 C33 58,38 64,46 66 C42 62,41 56,44 51 C47 46,52 44,57 46 C52 40,50 35,50 35Z" fill="#2b3a8f"/>
+    </svg>
     <span class="nav-name">mayanzero</span>
   </div>
   <div class="nav-right">
     <span class="nav-time" id="nav-time"></span>
-    <button class="btn-refresh" id="refresh-btn" onclick="refreshAll()">
-      ↺ Actualizar
-    </button>
+    <button class="btn-refresh" id="refresh-btn" onclick="loadData()">↺ Actualizar</button>
   </div>
 </nav>
 
-<!-- PAGE -->
 <div class="page">
-
-  <!-- Header -->
   <div class="page-header">
     <div>
       <div class="page-title">Dashboard de Agentes</div>
@@ -525,116 +156,84 @@ footer {
     <div id="last-update" style="font-size:12px;color:var(--soft);font-weight:600"></div>
   </div>
 
-  <!-- Status -->
   <div class="status-row" id="status-row">
-    <div class="pill pill-load"><span class="pill-dot"></span>Cargando agentes...</div>
+    <div class="pill pill-load"><span class="pill-dot"></span>Cargando datos...</div>
   </div>
 
-  <!-- Summary -->
   <div class="summary-grid" id="summary-grid">
-    <div class="sum-card" style="--card-accent:var(--red)">
-      <div class="sum-label">CxC Vencida Total</div>
-      <div class="sk" style="height:32px;width:120px;margin-bottom:6px"></div>
-      <div class="sum-sub">Cargando...</div>
-    </div>
-    <div class="sum-card" style="--card-accent:var(--gold)">
-      <div class="sum-label">CxP Pendiente Total</div>
-      <div class="sk" style="height:32px;width:120px;margin-bottom:6px"></div>
-      <div class="sum-sub">Cargando...</div>
-    </div>
-    <div class="sum-card" style="--card-accent:var(--blue)">
-      <div class="sum-label">Pagos del Mes</div>
-      <div class="sk" style="height:32px;width:120px;margin-bottom:6px"></div>
-      <div class="sum-sub">Cargando...</div>
-    </div>
-    <div class="sum-card" style="--card-accent:var(--blue-dark)">
-      <div class="sum-label">Sin Timbrar</div>
-      <div class="sk" style="height:32px;width:60px;margin-bottom:6px"></div>
-      <div class="sum-sub">Cargando...</div>
-    </div>
+    <div class="sum-card" style="--card-accent:var(--red)"><div class="sum-label">CxC Vencida Total</div><div class="sk" style="height:32px;width:120px;margin-bottom:6px"></div></div>
+    <div class="sum-card" style="--card-accent:var(--gold)"><div class="sum-label">CxP Pendiente Total</div><div class="sk" style="height:32px;width:120px;margin-bottom:6px"></div></div>
+    <div class="sum-card" style="--card-accent:var(--blue)"><div class="sum-label">Pagos del Mes</div><div class="sk" style="height:32px;width:120px;margin-bottom:6px"></div></div>
+    <div class="sum-card" style="--card-accent:var(--blue-dark)"><div class="sum-label">Sin Timbrar</div><div class="sk" style="height:32px;width:60px;margin-bottom:6px"></div></div>
   </div>
 
-  <!-- Clients -->
-  <div class="clients-grid" id="clients-grid"></div>
+  <div class="clients-grid" id="clients-grid">
+    <div class="client-card"><div style="padding:32px 20px;display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="sk" style="height:70px;border-radius:10px"></div><div class="sk" style="height:70px;border-radius:10px"></div><div class="sk" style="height:70px;border-radius:10px"></div><div class="sk" style="height:70px;border-radius:10px"></div></div></div>
+    <div class="client-card"><div style="padding:32px 20px;display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="sk" style="height:70px;border-radius:10px"></div><div class="sk" style="height:70px;border-radius:10px"></div><div class="sk" style="height:70px;border-radius:10px"></div><div class="sk" style="height:70px;border-radius:10px"></div></div></div>
+  </div>
 
-  <!-- Footer -->
   <footer>
     <div style="font-weight:700;color:var(--blue-dark)">mayanzero · XTELABOT</div>
-    <div>Dashboard de Agentes · Datos en tiempo real desde Odoo</div>
+    <div>Datos actualizados automáticamente cada hora</div>
     <div id="footer-ts"></div>
   </footer>
-
 </div>
 
 <script>
-const API = 'http://34.27.77.64:8090';
+// Lee data.json desde el mismo repo de GitHub Pages
+const DATA_URL = 'https://mayanzero.github.io/xtela-dashboard/data.json';
 
-const CLIENTES = {
-  mayan_zero:  { nombre:'Mayan Zero',        color:'#2b3a8f', tipo:'Interno'  },
-  mayan_kakaw: { nombre:'Mayan Kakaw',        color:'#c47f1a', tipo:'Cliente'  },
-  moonshift:   { nombre:'Moonshift / EVIRAT', color:'#4e6de8', tipo:'Cliente'  },
-  agua_tulum:  { nombre:'Agua de Tulum',      color:'#1e7a4a', tipo:'Cliente'  },
-};
-
-let state = {};
+let data = null;
 let activeDetail = {};
 
 function tick() {
-  const now = new Date();
   document.getElementById('nav-time').textContent =
-    now.toLocaleTimeString('es-MX', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
-setInterval(tick, 1000);
-tick();
+setInterval(tick,1000); tick();
 
 function fmt(n) {
-  if (n === null || n === undefined) return '—';
-  if (Math.abs(n) >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
-  if (Math.abs(n) >= 1000)    return '$' + Math.round(n).toLocaleString('es-MX');
-  return '$' + Number(n).toFixed(0);
+  if (n===null||n===undefined) return '—';
+  if (Math.abs(n)>=1000000) return '$'+(n/1000000).toFixed(1)+'M';
+  if (Math.abs(n)>=1000)    return '$'+Math.round(n).toLocaleString('es-MX');
+  return '$'+Number(n).toFixed(0);
 }
+function fmtDate(s) { return s?s.substring(0,10):''; }
 
-function fmtDate(s) { return s ? s.substring(0,10) : ''; }
-
-function partnerName(p) {
-  if (!p) return '—';
-  if (Array.isArray(p)) return p[1] || '—';
-  return String(p);
-}
-
-function getClass(val, type) {
-  if (type === 'cxc')     return val > 0 ? 'red'  : 'green';
-  if (type === 'cxp')     return val > 0 ? 'gold' : 'green';
-  if (type === 'timbrar') return val > 0 ? 'red'  : 'green';
+function getClass(val,type) {
+  if (type==='cxc')     return val>0?'red':'green';
+  if (type==='cxp')     return val>0?'gold':'green';
+  if (type==='timbrar') return val>0?'red':'green';
   return 'blue';
 }
 
 function renderStatus() {
+  if (!data) return;
   document.getElementById('status-row').innerHTML =
-    Object.entries(CLIENTES).map(([k,m]) => {
-      const d = state[k];
-      const cls   = !d ? 'pill-load' : d.status === 'ok' ? 'pill-ok' : 'pill-error';
-      const label = !d ? 'Cargando'  : d.status === 'ok' ? 'Conectado' : 'Error';
+    Object.entries(data.clientes).map(([k,c]) => {
+      const cls   = c.status==='ok' ? 'pill-ok' : 'pill-error';
+      const label = c.status==='ok' ? 'Conectado' : 'Error';
       return `<div class="pill ${cls}">
         <span class="pill-dot"></span>
-        <span style="color:${m.color};font-weight:800">${m.nombre}</span>
-        <span>· ${label}</span>
+        <span style="color:${c.color};font-weight:800">${c.nombre}</span>
+        · ${label}
+        ${c.ultima_actualizacion ? '<span style="opacity:0.6">'+c.ultima_actualizacion+'</span>' : ''}
       </div>`;
     }).join('');
 }
 
 function renderSummary() {
-  let cxc=0, cxp=0, pagos=0, timbrar=0,
-      cxcN=0, cxpN=0, pagosN=0;
-  Object.values(state).forEach(d => {
-    if (d?.status === 'ok') {
-      cxc     += d.resumen?.cxc_vencidas_total    || 0;
-      cxp     += d.resumen?.cxp_pendientes_total  || 0;
-      pagos   += d.resumen?.pagos_mes_total       || 0;
-      timbrar += d.resumen?.sin_timbrar_count     || 0;
-      cxcN    += d.resumen?.cxc_vencidas_count    || 0;
-      cxpN    += d.resumen?.cxp_pendientes_count  || 0;
-      pagosN  += d.resumen?.pagos_mes_count       || 0;
+  if (!data) return;
+  let cxc=0,cxp=0,pagos=0,timbrar=0,cxcN=0,cxpN=0,pagosN=0;
+  Object.values(data.clientes).forEach(c => {
+    if (c.status==='ok') {
+      cxc     += c.resumen?.cxc_vencidas_total    ||0;
+      cxp     += c.resumen?.cxp_pendientes_total  ||0;
+      pagos   += c.resumen?.pagos_mes_total       ||0;
+      timbrar += c.resumen?.sin_timbrar_count     ||0;
+      cxcN    += c.resumen?.cxc_vencidas_count    ||0;
+      cxpN    += c.resumen?.cxp_pendientes_count  ||0;
+      pagosN  += c.resumen?.pagos_mes_count       ||0;
     }
   });
   document.getElementById('summary-grid').innerHTML = `
@@ -655,163 +254,128 @@ function renderSummary() {
     </div>
     <div class="sum-card" style="--card-accent:var(--blue-dark)">
       <div class="sum-label">Sin Timbrar</div>
-      <div class="sum-value ${timbrar > 0 ? 'red' : 'text'}">${timbrar}</div>
+      <div class="sum-value ${timbrar>0?'red':'text'}">${timbrar}</div>
       <div class="sum-sub">facturas en borrador</div>
-    </div>
-  `;
+    </div>`;
 }
 
 function toggleDetail(key, metric) {
-  const drawer = document.getElementById(`drawer-${key}`);
-  if (activeDetail[key] === metric) {
+  const drawer = document.getElementById('drawer-'+key);
+  if (activeDetail[key]===metric) {
     drawer.classList.remove('open');
-    activeDetail[key] = null;
-    document.querySelectorAll(`[data-key="${key}"]`).forEach(el => el.classList.remove('active'));
+    activeDetail[key]=null;
+    document.querySelectorAll('[data-key="'+key+'"]').forEach(e=>e.classList.remove('active'));
     return;
   }
-  document.querySelectorAll(`[data-key="${key}"]`).forEach(el => el.classList.remove('active'));
-  document.querySelector(`[data-key="${key}"][data-metric="${metric}"]`)?.classList.add('active');
-  activeDetail[key] = metric;
+  document.querySelectorAll('[data-key="'+key+'"]').forEach(e=>e.classList.remove('active'));
+  document.querySelector('[data-key="'+key+'"][data-metric="'+metric+'"]')?.classList.add('active');
+  activeDetail[key]=metric;
   drawer.classList.add('open');
 
-  const d = state[key];
-  if (!d?.detalle) return;
-  const items = d.detalle[metric] || [];
+  const c = data.clientes[key];
+  if (!c?.detalle) return;
+  const items = c.detalle[metric]||[];
   const titles = {
-    cxc_vencidas:       'Cuentas por Cobrar Vencidas',
-    cxp_pendientes:     'Cuentas por Pagar Pendientes',
-    pagos_mes:          'Pagos del Mes',
-    sin_timbrar:        'Facturas sin Timbrar',
-    facturas_proveedor: 'Facturas de Proveedor',
+    cxc_vencidas:'CxC Vencidas',cxp_pendientes:'CxP Pendientes',
+    pagos_mes:'Pagos del Mes',sin_timbrar:'Sin Timbrar',facturas_proveedor:'Facturas Proveedor'
   };
 
   const rows = items.length
     ? items.map(r => {
-        const amount = r.amount_residual ?? r.amount ?? r.amount_total ?? 0;
-        const date   = r.invoice_date_due ?? r.date ?? r.invoice_date ?? '';
+        const amount = r.amount_residual??r.amount??r.amount_total??0;
+        const date   = r.invoice_date_due??r.date??r.invoice_date??'';
+        const partner = typeof r.partner_id==='string' ? r.partner_id : (r.partner_id?.[1]||'—');
         return `<div class="detail-row">
-          <span class="detail-partner">${partnerName(r.partner_id)}</span>
+          <span class="detail-partner">${partner}</span>
           <span class="detail-date">${fmtDate(date)}</span>
           <span class="detail-amount">${fmt(amount)}</span>
         </div>`;
       }).join('')
-    : `<div class="empty-detail">Sin registros este período</div>`;
+    : '<div style="padding:16px;font-size:12px;color:var(--soft);text-align:center">Sin registros</div>';
 
   drawer.innerHTML = `<div class="detail-inner">
-    <div class="detail-head">${titles[metric] || metric} · ${items.length} registros</div>
+    <div class="detail-head">${titles[metric]||metric} · ${items.length} registros</div>
     ${rows}
   </div>`;
 }
 
-function renderCard(key) {
-  const m = CLIENTES[key];
-  const d = state[key];
-
-  if (!d) {
-    return `<div class="client-card" style="--card-color:${m.color}">
-      <div class="card-top">
-        <div class="card-name"><span class="card-dot"></span>${m.nombre}</div>
-        <div class="card-tag">${m.tipo}</div>
-      </div>
-      <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div class="sk" style="height:70px;border-radius:10px"></div>
-        <div class="sk" style="height:70px;border-radius:10px"></div>
-        <div class="sk" style="height:70px;border-radius:10px"></div>
-        <div class="sk" style="height:70px;border-radius:10px"></div>
-      </div>
-    </div>`;
-  }
-
-  if (d.status === 'error') {
-    return `<div class="client-card" style="--card-color:${m.color}">
-      <div class="card-top">
-        <div class="card-name"><span class="card-dot"></span>${m.nombre}</div>
-        <div class="card-tag">${m.tipo}</div>
-      </div>
-      <div class="error-card">
-        <div class="error-icon">⚠️</div>
-        <div class="error-msg">${d.error || 'Error de conexión con Odoo'}</div>
-      </div>
-    </div>`;
-  }
-
-  const r = d.resumen;
-
-  return `<div class="client-card" style="--card-color:${m.color}">
-    <div class="card-top">
-      <div class="card-name"><span class="card-dot"></span>${m.nombre}</div>
-      <div class="card-tag">${m.tipo}</div>
-    </div>
-    <div class="metrics-wrap">
-      <div class="metric-box" data-key="${key}" data-metric="cxc_vencidas"
-           onclick="toggleDetail('${key}','cxc_vencidas')">
-        <div class="metric-label">CxC Vencida</div>
-        <div class="metric-value ${getClass(r.cxc_vencidas_total,'cxc')}">${fmt(r.cxc_vencidas_total)}</div>
-        <div class="metric-sub">${r.cxc_vencidas_count} facturas</div>
-      </div>
-      <div class="metric-box" data-key="${key}" data-metric="cxp_pendientes"
-           onclick="toggleDetail('${key}','cxp_pendientes')">
-        <div class="metric-label">CxP Pendiente</div>
-        <div class="metric-value ${getClass(r.cxp_pendientes_total,'cxp')}">${fmt(r.cxp_pendientes_total)}</div>
-        <div class="metric-sub">${r.cxp_pendientes_count} facturas</div>
-      </div>
-      <div class="metric-box" data-key="${key}" data-metric="pagos_mes"
-           onclick="toggleDetail('${key}','pagos_mes')">
-        <div class="metric-label">Pagos del Mes</div>
-        <div class="metric-value blue">${fmt(r.pagos_mes_total)}</div>
-        <div class="metric-sub">${r.pagos_mes_count} pagos</div>
-      </div>
-      <div class="metric-box" data-key="${key}" data-metric="sin_timbrar"
-           onclick="toggleDetail('${key}','sin_timbrar')">
-        <div class="metric-label">Sin Timbrar</div>
-        <div class="metric-value ${getClass(r.sin_timbrar_count,'timbrar')}">${r.sin_timbrar_count}</div>
-        <div class="metric-sub">borradores</div>
-      </div>
-      <div class="metric-box wide" data-key="${key}" data-metric="facturas_proveedor"
-           onclick="toggleDetail('${key}','facturas_proveedor')">
-        <div class="metric-label">Facturas de Proveedor (mes)</div>
-        <div class="metric-value dark">${fmt(r.facturas_proveedor_total)}</div>
-        <div class="metric-sub">${r.facturas_proveedor_count} facturas · click para ver detalle</div>
-      </div>
-    </div>
-    <div class="detail-drawer" id="drawer-${key}"></div>
-  </div>`;
-}
-
-function renderGrid() {
+function renderCards() {
+  if (!data) return;
   document.getElementById('clients-grid').innerHTML =
-    Object.keys(CLIENTES).map(renderCard).join('');
+    Object.entries(data.clientes).map(([key,c]) => {
+      if (c.status==='error') {
+        return `<div class="client-card" style="--card-color:${c.color}">
+          <div class="card-top">
+            <div class="card-name"><span class="card-dot"></span>${c.nombre}</div>
+            <div class="card-tag">${c.tipo}</div>
+          </div>
+          <div class="error-card"><div style="font-size:22px">⚠️</div>
+          <div class="error-msg">${c.error||'Error de conexión'}</div></div>
+        </div>`;
+      }
+      const r = c.resumen||{};
+      return `<div class="client-card" style="--card-color:${c.color}">
+        <div class="card-top">
+          <div class="card-name"><span class="card-dot"></span>${c.nombre}</div>
+          <div class="card-tag">${c.tipo}</div>
+        </div>
+        <div class="card-ts">Actualizado: ${c.ultima_actualizacion||'—'}</div>
+        <div class="metrics-wrap">
+          <div class="metric-box" data-key="${key}" data-metric="cxc_vencidas" onclick="toggleDetail('${key}','cxc_vencidas')">
+            <div class="metric-label">CxC Vencida</div>
+            <div class="metric-value ${getClass(r.cxc_vencidas_total,'cxc')}">${fmt(r.cxc_vencidas_total)}</div>
+            <div class="metric-sub">${r.cxc_vencidas_count||0} facturas</div>
+          </div>
+          <div class="metric-box" data-key="${key}" data-metric="cxp_pendientes" onclick="toggleDetail('${key}','cxp_pendientes')">
+            <div class="metric-label">CxP Pendiente</div>
+            <div class="metric-value ${getClass(r.cxp_pendientes_total,'cxp')}">${fmt(r.cxp_pendientes_total)}</div>
+            <div class="metric-sub">${r.cxp_pendientes_count||0} facturas</div>
+          </div>
+          <div class="metric-box" data-key="${key}" data-metric="pagos_mes" onclick="toggleDetail('${key}','pagos_mes')">
+            <div class="metric-label">Pagos del Mes</div>
+            <div class="metric-value blue">${fmt(r.pagos_mes_total)}</div>
+            <div class="metric-sub">${r.pagos_mes_count||0} pagos</div>
+          </div>
+          <div class="metric-box" data-key="${key}" data-metric="sin_timbrar" onclick="toggleDetail('${key}','sin_timbrar')">
+            <div class="metric-label">Sin Timbrar</div>
+            <div class="metric-value ${getClass(r.sin_timbrar_count,'timbrar')}">${r.sin_timbrar_count||0}</div>
+            <div class="metric-sub">borradores</div>
+          </div>
+          <div class="metric-box wide" data-key="${key}" data-metric="facturas_proveedor" onclick="toggleDetail('${key}','facturas_proveedor')">
+            <div class="metric-label">Facturas de Proveedor (mes)</div>
+            <div class="metric-value dark">${fmt(r.facturas_proveedor_total)}</div>
+            <div class="metric-sub">${r.facturas_proveedor_count||0} facturas · click para ver detalle</div>
+          </div>
+        </div>
+        <div class="detail-drawer" id="drawer-${key}"></div>
+      </div>`;
+    }).join('');
 }
 
-async function loadOne(key, force=false) {
-  try {
-    const r = await fetch(`${API}/api/metricas/${key}${force?'?force=true':''}`);
-    state[key] = await r.json();
-  } catch(e) {
-    state[key] = {status:'error',error:'Sin conexión al servidor XTELA',resumen:{},detalle:{}};
-  }
-  renderGrid();
-  renderStatus();
-  renderSummary();
-}
-
-async function refreshAll(force=false) {
+async function loadData() {
   const btn = document.getElementById('refresh-btn');
   btn.classList.add('loading');
-  btn.textContent = '↺ Actualizando...';
-  if (force) state = {};
-  renderGrid();
-  renderStatus();
-  await Promise.all(Object.keys(CLIENTES).map(k => loadOne(k, force)));
+  btn.textContent = '↺ Cargando...';
+
+  try {
+    const r = await fetch(DATA_URL + '?t=' + Date.now());
+    data = await r.json();
+    renderStatus();
+    renderSummary();
+    renderCards();
+    const gen = new Date(data.generado).toLocaleString('es-MX',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'short'});
+    document.getElementById('last-update').textContent = 'Generado: ' + gen;
+    document.getElementById('footer-ts').textContent = gen;
+  } catch(e) {
+    document.getElementById('status-row').innerHTML =
+      '<div class="pill pill-error"><span class="pill-dot"></span>Error cargando datos</div>';
+  }
+
   btn.classList.remove('loading');
   btn.textContent = '↺ Actualizar';
-  const ts = new Date().toLocaleTimeString('es-MX');
-  document.getElementById('last-update').textContent = 'Actualizado: ' + ts;
-  document.getElementById('footer-ts').textContent = ts;
 }
 
-setInterval(() => refreshAll(false), 5*60*1000);
-refreshAll();
+loadData();
 </script>
 </body>
 </html>
