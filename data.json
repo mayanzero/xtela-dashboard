@@ -1,5 +1,5 @@
 {
-  "generado": "2026-04-20T19:51:08.238902",
+  "generado": "2026-04-24T21:06:36.634988",
   "secciones": {
     "enterprise": {
       "titulo": "Odoo Enterprise",
@@ -11,17 +11,17 @@
           "color": "#4493f8",
           "tipo": "Enterprise",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
-            "pagos_in_total": 119873.24,
-            "pagos_in_count": 25,
-            "pagos_out_total": 0,
-            "pagos_out_count": 0,
-            "facturas_venta_total": 164489.24,
-            "facturas_venta_count": 38,
+            "pagos_in_total": 122373.24,
+            "pagos_in_count": 27,
+            "pagos_out_total": 1731.0,
+            "pagos_out_count": 1,
+            "facturas_venta_total": 209750.24,
+            "facturas_venta_count": 50,
             "facturas_proveedor_total": 0,
             "facturas_proveedor_count": 0,
-            "cxc_vencidas_total": 528515.45,
+            "cxc_vencidas_total": 387395.45,
             "cxc_vencidas_count": 50,
             "cxp_pendientes_total": 0,
             "cxp_pendientes_count": 0,
@@ -29,6 +29,22 @@
           },
           "detalle": {
             "pagos_in": [
+              {
+                "id": 1168,
+                "name": "PBBVA1/2026/00156",
+                "partner_id": "DELFINA PORRAS",
+                "amount": 1000.0,
+                "date": "2026-04-24",
+                "memo": "INV/2026/00196"
+              },
+              {
+                "id": 1167,
+                "name": "PBBVA1/2026/00155",
+                "partner_id": "ROCIO DE JESUS CENDEJAS AGUAYO",
+                "amount": 1500.0,
+                "date": "2026-04-21",
+                "memo": "INV/2026/00179"
+              },
               {
                 "id": 1164,
                 "name": "PBBVA1/2026/00153",
@@ -92,178 +108,171 @@
                 "amount": 3000.0,
                 "date": "2026-04-15",
                 "memo": "INV/2026/00181"
-              },
-              {
-                "id": 1156,
-                "name": "PBBVA1/2026/00145",
-                "partner_id": "CHANLITO BIZ",
-                "amount": 3480.0,
-                "date": "2026-04-15",
-                "memo": "INV/2026/00139"
-              },
-              {
-                "id": 1155,
-                "name": "PBBVA1/2026/00144",
-                "partner_id": "EVIRAT S.A DE C.V.",
-                "amount": 2000.0,
-                "date": "2026-04-15",
-                "memo": "INV/2026/00163"
               }
             ],
-            "pagos_out": [],
+            "pagos_out": [
+              {
+                "id": 1170,
+                "name": "PAY00013",
+                "partner_id": "ROSARIO TUCUCH",
+                "amount": 1731.0,
+                "date": "2026-04-24",
+                "memo": "DERECHOS VERONICA CASTRO"
+              }
+            ],
             "facturas_venta": [
               {
-                "id": 4713,
-                "name": "INV/2026/00187",
-                "partner_id": "JOSE ROBERTO CANO PALMERO",
-                "amount_total": 1500.0,
-                "invoice_date": "2026-04-20",
-                "payment_state": "not_paid"
-              },
-              {
-                "id": 4710,
-                "name": "INV/2026/00186",
-                "partner_id": "EVIRAT S.A DE C.V.",
-                "amount_total": 15396.5,
-                "invoice_date": "2026-04-20",
-                "payment_state": "paid"
-              },
-              {
-                "id": 4709,
-                "name": "INV/2026/00185",
-                "partner_id": "AGUA DE TULUM S.A. DE C.V.",
-                "amount_total": 10000.0,
-                "invoice_date": "2026-04-17",
-                "payment_state": "not_paid"
-              },
-              {
-                "id": 4704,
-                "name": "INV/2026/00184",
-                "partner_id": "KUXTAL TULUM RENTALS",
-                "amount_total": 3000.0,
-                "invoice_date": "2026-04-15",
-                "payment_state": "paid"
-              },
-              {
-                "id": 4618,
-                "name": "INV/2026/00167",
-                "partner_id": "KUXTAL TULUM RENTALS",
-                "amount_total": 500.0,
-                "invoice_date": "2026-04-15",
-                "payment_state": "paid"
-              },
-              {
-                "id": 4617,
-                "name": "INV/2026/00166",
-                "partner_id": "KUXTAL TULUM RENTALS",
-                "amount_total": 500.0,
-                "invoice_date": "2026-04-15",
-                "payment_state": "paid"
-              },
-              {
-                "id": 4616,
-                "name": "INV/2026/00165",
-                "partner_id": "KUXTAL TULUM RENTALS",
-                "amount_total": 500.0,
-                "invoice_date": "2026-04-15",
-                "payment_state": "paid"
-              },
-              {
-                "id": 4614,
-                "name": "INV/2026/00163",
-                "partner_id": "EVIRAT S.A DE C.V.",
-                "amount_total": 2000.0,
-                "invoice_date": "2026-04-15",
-                "payment_state": "paid"
-              },
-              {
-                "id": 4522,
-                "name": "INV/2026/00139",
-                "partner_id": "CHANLITO BIZ",
-                "amount_total": 3480.0,
-                "invoice_date": "2026-04-15",
-                "payment_state": "paid"
-              },
-              {
-                "id": 4687,
-                "name": "INV/2026/00183",
+                "id": 4742,
+                "name": "INV/2026/00200",
                 "partner_id": "ZENO MANAGEMENT",
-                "amount_total": 8000.0,
-                "invoice_date": "2026-04-14",
+                "amount_total": 26250.0,
+                "invoice_date": "2026-04-24",
+                "payment_state": "not_paid"
+              },
+              {
+                "id": 4739,
+                "name": "INV/2026/00199",
+                "partner_id": "VERONICA CASTRO",
+                "amount_total": 6231.0,
+                "invoice_date": "2026-04-24",
+                "payment_state": "partial"
+              },
+              {
+                "id": 4735,
+                "name": "INV/2026/00197",
+                "partner_id": "KIARA SANTILLAN",
+                "amount_total": 1300.0,
+                "invoice_date": "2026-04-23",
+                "payment_state": "not_paid"
+              },
+              {
+                "id": 4734,
+                "name": "INV/2026/00196",
+                "partner_id": "DELFINA PORRAS",
+                "amount_total": 1000.0,
+                "invoice_date": "2026-04-23",
+                "payment_state": "paid"
+              },
+              {
+                "id": 4733,
+                "name": "INV/2026/00195",
+                "partner_id": "ALEJANDRA CUSI DE OVANDO",
+                "amount_total": 1000.0,
+                "invoice_date": "2026-04-23",
+                "payment_state": "not_paid"
+              },
+              {
+                "id": 4732,
+                "name": "INV/2026/00194",
+                "partner_id": "KARLA ROCIO MELENDEZ ZAMORA",
+                "amount_total": 1000.0,
+                "invoice_date": "2026-04-23",
+                "payment_state": "not_paid"
+              },
+              {
+                "id": 4668,
+                "name": "INV/2026/00179",
+                "partner_id": "ROCIO DE JESUS CENDEJAS AGUAYO",
+                "amount_total": 1500.0,
+                "invoice_date": "2026-04-23",
+                "payment_state": "paid"
+              },
+              {
+                "id": 4727,
+                "name": "INV/2026/00193",
+                "partner_id": "FREDERIKC MUÑOZ SANTOYO",
+                "amount_total": 1000.0,
+                "invoice_date": "2026-04-21",
+                "payment_state": "not_paid"
+              },
+              {
+                "id": 4726,
+                "name": "INV/2026/00192",
+                "partner_id": "FREDERIKC MUÑOZ SANTOYO",
+                "amount_total": 1000.0,
+                "invoice_date": "2026-04-21",
+                "payment_state": "not_paid"
+              },
+              {
+                "id": 4725,
+                "name": "INV/2026/00191",
+                "partner_id": "EDUARD JOSE SOSA LOPEZ",
+                "amount_total": 1000.0,
+                "invoice_date": "2026-04-21",
                 "payment_state": "not_paid"
               }
             ],
             "facturas_proveedor": [],
             "cxc_vencidas": [
               {
-                "id": 4687,
-                "name": "INV/2026/00183",
-                "partner_id": "ZENO MANAGEMENT",
-                "amount_residual": 8000.0,
-                "invoice_date_due": "2026-04-14"
+                "id": 4735,
+                "name": "INV/2026/00197",
+                "partner_id": "KIARA SANTILLAN",
+                "amount_residual": 1300.0,
+                "invoice_date_due": "2026-04-23"
               },
               {
-                "id": 4682,
-                "name": "INV/2026/00182",
-                "partner_id": "ZENO MANAGEMENT",
-                "amount_residual": 8000.0,
-                "invoice_date_due": "2026-04-14"
+                "id": 4733,
+                "name": "INV/2026/00195",
+                "partner_id": "ALEJANDRA CUSI DE OVANDO",
+                "amount_residual": 1000.0,
+                "invoice_date_due": "2026-04-23"
               },
               {
-                "id": 4668,
-                "name": "INV/2026/00179",
+                "id": 4732,
+                "name": "INV/2026/00194",
+                "partner_id": "KARLA ROCIO MELENDEZ ZAMORA",
+                "amount_residual": 1000.0,
+                "invoice_date_due": "2026-04-23"
+              },
+              {
+                "id": 4727,
+                "name": "INV/2026/00193",
+                "partner_id": "FREDERIKC MUÑOZ SANTOYO",
+                "amount_residual": 1000.0,
+                "invoice_date_due": "2026-04-21"
+              },
+              {
+                "id": 4726,
+                "name": "INV/2026/00192",
+                "partner_id": "FREDERIKC MUÑOZ SANTOYO",
+                "amount_residual": 1000.0,
+                "invoice_date_due": "2026-04-21"
+              },
+              {
+                "id": 4725,
+                "name": "INV/2026/00191",
+                "partner_id": "EDUARD JOSE SOSA LOPEZ",
+                "amount_residual": 1000.0,
+                "invoice_date_due": "2026-04-21"
+              },
+              {
+                "id": 4724,
+                "name": "INV/2026/00190",
                 "partner_id": "ROCIO DE JESUS CENDEJAS AGUAYO",
+                "amount_residual": 1000.0,
+                "invoice_date_due": "2026-04-21"
+              },
+              {
+                "id": 4723,
+                "name": "INV/2026/00189",
+                "partner_id": "ANNA TEPPER",
+                "amount_residual": 1000.0,
+                "invoice_date_due": "2026-04-21"
+              },
+              {
+                "id": 4717,
+                "name": "INV/2026/00188",
+                "partner_id": "CHANLITO BIZ",
+                "amount_residual": 3480.0,
+                "invoice_date_due": "2026-04-21"
+              },
+              {
+                "id": 4713,
+                "name": "INV/2026/00187",
+                "partner_id": "JOSE ROBERTO CANO PALMERO",
                 "amount_residual": 1500.0,
-                "invoice_date_due": "2026-04-14"
-              },
-              {
-                "id": 4647,
-                "name": "INV/2026/00177",
-                "partner_id": "QUINCY NAD HAK BARRY",
-                "amount_residual": 2000.0,
-                "invoice_date_due": "2026-04-14"
-              },
-              {
-                "id": 4643,
-                "name": "INV/2026/00176",
-                "partner_id": "QUINCY NAD HAK BARRY",
-                "amount_residual": 3000.0,
-                "invoice_date_due": "2026-04-14"
-              },
-              {
-                "id": 4626,
-                "name": "INV/2026/00170",
-                "partner_id": "ORUN BATHHOUSE SA DE CV",
-                "amount_residual": 2000.0,
-                "invoice_date_due": "2026-04-13"
-              },
-              {
-                "id": 4607,
-                "name": "INV/2026/00160",
-                "partner_id": "AGUA DE TULUM S.A. DE C.V.",
-                "amount_residual": 2000.0,
-                "invoice_date_due": "2026-04-09"
-              },
-              {
-                "id": 4606,
-                "name": "INV/2026/00159",
-                "partner_id": "GRUPO EMPRESARIAL SANERMO",
-                "amount_residual": 116.0,
-                "invoice_date_due": "2026-04-09"
-              },
-              {
-                "id": 4602,
-                "name": "INV/2026/00158",
-                "partner_id": "GRUPO EMPRESARIAL SANERMO",
-                "amount_residual": 3000.0,
-                "invoice_date_due": "2026-04-09"
-              },
-              {
-                "id": 4598,
-                "name": "INV/2026/00156",
-                "partner_id": "CUME PARTNERS SA DE CV",
-                "amount_residual": 2000.0,
-                "invoice_date_due": "2026-04-07"
+                "invoice_date_due": "2026-04-20"
               }
             ],
             "cxp_pendientes": [],
@@ -276,24 +285,32 @@
           "color": "#bc8cff",
           "tipo": "Enterprise",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
-            "pagos_in_total": 7649.99,
-            "pagos_in_count": 1,
+            "pagos_in_total": 16649.99,
+            "pagos_in_count": 2,
             "pagos_out_total": 42107.04,
             "pagos_out_count": 1,
-            "facturas_venta_total": 40824.99,
-            "facturas_venta_count": 5,
+            "facturas_venta_total": 44674.99,
+            "facturas_venta_count": 6,
             "facturas_proveedor_total": 42737.02,
             "facturas_proveedor_count": 4,
-            "cxc_vencidas_total": 135100.08,
+            "cxc_vencidas_total": 121100.08,
             "cxc_vencidas_count": 7,
             "cxp_pendientes_total": 417512.32,
             "cxp_pendientes_count": 50,
-            "sin_timbrar_count": 0
+            "sin_timbrar_count": 16
           },
           "detalle": {
             "pagos_in": [
+              {
+                "id": 86,
+                "name": "PBNK1/2026/00019",
+                "partner_id": "OPERACION CON SENTIDO",
+                "amount": 9000.0,
+                "date": "2026-04-16",
+                "memo": "INV/2026/00013"
+              },
               {
                 "id": 85,
                 "name": "PBNK1/2026/00018",
@@ -314,6 +331,14 @@
               }
             ],
             "facturas_venta": [
+              {
+                "id": 1129,
+                "name": "INV/2026/00018",
+                "partner_id": "OPERACION CON SENTIDO",
+                "amount_total": 3850.0,
+                "invoice_date": "2026-04-23",
+                "payment_state": "not_paid"
+              },
               {
                 "id": 1086,
                 "name": "INV/2026/00017",
@@ -352,7 +377,7 @@
                 "partner_id": "OPERACION CON SENTIDO",
                 "amount_total": 9000.0,
                 "invoice_date": "2026-04-07",
-                "payment_state": "not_paid"
+                "payment_state": "paid"
               }
             ],
             "facturas_proveedor": [
@@ -391,17 +416,17 @@
             ],
             "cxc_vencidas": [
               {
+                "id": 1129,
+                "name": "INV/2026/00018",
+                "partner_id": "OPERACION CON SENTIDO",
+                "amount_residual": 3850.0,
+                "invoice_date_due": "2026-04-23"
+              },
+              {
                 "id": 1086,
                 "name": "INV/2026/00017",
                 "partner_id": "PIZZERIA Y CERVECERIA",
                 "amount_residual": 2475.0,
-                "invoice_date_due": "2026-04-10"
-              },
-              {
-                "id": 1083,
-                "name": "INV/2026/00016",
-                "partner_id": "PACHUCO VINOS Y LICORES, Diego",
-                "amount_residual": 17850.0,
                 "invoice_date_due": "2026-04-10"
               },
               {
@@ -512,7 +537,78 @@
                 "invoice_date_due": "2026-03-31"
               }
             ],
-            "sin_timbrar": []
+            "sin_timbrar": [
+              {
+                "id": 1128,
+                "name": false,
+                "partner_id": "OPERACION CON SENTIDO",
+                "amount_total": 3850.0,
+                "invoice_date": false
+              },
+              {
+                "id": 1119,
+                "name": false,
+                "partner_id": "PÚBLICO EN GENERAL",
+                "amount_total": 800.0,
+                "invoice_date": false
+              },
+              {
+                "id": 1117,
+                "name": false,
+                "partner_id": "CATHLEEN OWEN",
+                "amount_total": 0.0,
+                "invoice_date": false
+              },
+              {
+                "id": 1113,
+                "name": false,
+                "partner_id": "OSCAR IVAN FERNANDEZ DIAZ",
+                "amount_total": 7680.0,
+                "invoice_date": "2025-11-26"
+              },
+              {
+                "id": 1112,
+                "name": false,
+                "partner_id": "OSCAR IVAN FERNANDEZ DIAZ",
+                "amount_total": 3840.0,
+                "invoice_date": "2025-08-04"
+              },
+              {
+                "id": 1124,
+                "name": false,
+                "partner_id": "GABRIEL EMANUEL GONZALEZ PEREZ",
+                "amount_total": 0.0,
+                "invoice_date": "2025-07-14"
+              },
+              {
+                "id": 1125,
+                "name": false,
+                "partner_id": "GABRIEL EMANUEL GONZALEZ PEREZ",
+                "amount_total": 0.0,
+                "invoice_date": "2025-07-13"
+              },
+              {
+                "id": 1109,
+                "name": false,
+                "partner_id": "OSCAR IVAN FERNANDEZ DIAZ",
+                "amount_total": 3840.0,
+                "invoice_date": "2025-07-13"
+              },
+              {
+                "id": 1123,
+                "name": false,
+                "partner_id": "GABRIEL EMANUEL GONZALEZ PEREZ",
+                "amount_total": 0.0,
+                "invoice_date": "2025-06-25"
+              },
+              {
+                "id": 1122,
+                "name": false,
+                "partner_id": "PÚBLICO EN GENERAL",
+                "amount_total": 600.01,
+                "invoice_date": "2025-06-16"
+              }
+            ]
           }
         },
         {
@@ -521,17 +617,17 @@
           "color": "#79c0ff",
           "tipo": "Enterprise",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
             "pagos_in_total": 42229.8,
             "pagos_in_count": 21,
             "pagos_out_total": 0,
             "pagos_out_count": 0,
-            "facturas_venta_total": 89275.4,
-            "facturas_venta_count": 12,
+            "facturas_venta_total": 123614.0,
+            "facturas_venta_count": 14,
             "facturas_proveedor_total": 0,
             "facturas_proveedor_count": 0,
-            "cxc_vencidas_total": 160926.4,
+            "cxc_vencidas_total": 161196.4,
             "cxc_vencidas_count": 50,
             "cxp_pendientes_total": 4084.3,
             "cxp_pendientes_count": 4,
@@ -623,6 +719,22 @@
             "pagos_out": [],
             "facturas_venta": [
               {
+                "id": 3721,
+                "name": "INV/2026/00316",
+                "partner_id": "JORGE FRANCISCO MORALES AGUILAR",
+                "amount_total": 11058.6,
+                "invoice_date": "2026-04-22",
+                "payment_state": "not_paid"
+              },
+              {
+                "id": 3723,
+                "name": "INV/2026/00317",
+                "partner_id": "LIVEK DEL CARIBE",
+                "amount_total": 23280.0,
+                "invoice_date": "2026-04-20",
+                "payment_state": "not_paid"
+              },
+              {
                 "id": 3720,
                 "name": "INV/2026/00315",
                 "partner_id": "LIVEK DEL CARIBE",
@@ -685,26 +797,17 @@
                 "amount_total": 1920.0,
                 "invoice_date": "2026-04-04",
                 "payment_state": "not_paid"
-              },
-              {
-                "id": 3659,
-                "name": "INV/2026/00307",
-                "partner_id": "VERONICA FABIOLA ZAZUETA ESPARZA",
-                "amount_total": 760.0,
-                "invoice_date": "2026-04-03",
-                "payment_state": "paid"
-              },
-              {
-                "id": 3658,
-                "name": "INV/2026/00306",
-                "partner_id": "MARIANNE IZASKUN AZNAR BERNAT",
-                "amount_total": 960.0,
-                "invoice_date": "2026-04-03",
-                "payment_state": "not_paid"
               }
             ],
             "facturas_proveedor": [],
             "cxc_vencidas": [
+              {
+                "id": 3717,
+                "name": "INV/2026/00314",
+                "partner_id": "CLAUDIA PEREZ RIVAS",
+                "amount_residual": 1230.0,
+                "invoice_date_due": "2026-04-22"
+              },
               {
                 "id": 3709,
                 "name": "INV/2026/00312",
@@ -767,13 +870,6 @@
                 "partner_id": "ONYX TULUM RESTAURANT BAR",
                 "amount_residual": 3980.0,
                 "invoice_date_due": "2026-04-07"
-              },
-              {
-                "id": 3622,
-                "name": "INV/2026/00296",
-                "partner_id": "JORGE FRANCISCO MORALES AGUILAR",
-                "amount_residual": 7183.8,
-                "invoice_date_due": "2026-04-04"
               }
             ],
             "cxp_pendientes": [
@@ -892,24 +988,40 @@
           "color": "#ffa657",
           "tipo": "XTELA",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
-            "pagos_in_total": 264639.31,
-            "pagos_in_count": 32,
-            "pagos_out_total": 247396.75,
+            "pagos_in_total": 283368.6,
+            "pagos_in_count": 34,
+            "pagos_out_total": 223484.58,
             "pagos_out_count": 50,
             "facturas_venta_total": 23624.32,
             "facturas_venta_count": 4,
             "facturas_proveedor_total": 0,
             "facturas_proveedor_count": 0,
-            "cxc_vencidas_total": 84209.3,
-            "cxc_vencidas_count": 8,
+            "cxc_vencidas_total": 66057.63,
+            "cxc_vencidas_count": 2,
             "cxp_pendientes_total": 0,
             "cxp_pendientes_count": 0,
             "sin_timbrar_count": 0
           },
           "detalle": {
             "pagos_in": [
+              {
+                "id": 3215,
+                "name": "PSTP/2026/00296",
+                "partner_id": "CASA ALEJANDRA",
+                "amount": 11693.81,
+                "date": "2026-04-24",
+                "memo": false
+              },
+              {
+                "id": 3183,
+                "name": "PSTP/2026/00292",
+                "partner_id": "AMIRA DISTRICT C208a*",
+                "amount": 7035.48,
+                "date": "2026-04-21",
+                "memo": false
+              },
               {
                 "id": 3177,
                 "name": "PSTP/2026/00291",
@@ -973,25 +1085,41 @@
                 "amount": 2642.72,
                 "date": "2026-04-14",
                 "memo": false
-              },
-              {
-                "id": 3018,
-                "name": "PSTP/2026/00283",
-                "partner_id": "SERGIO ADRIAN SUAREZ VILCHIS",
-                "amount": 3278.0,
-                "date": "2026-04-14",
-                "memo": false
-              },
-              {
-                "id": 2307,
-                "name": "PSTP/2026/00282",
-                "partner_id": "TAANAH TULUM CONDOMINIO 3B",
-                "amount": 2104.2,
-                "date": "2026-04-10",
-                "memo": false
               }
             ],
             "pagos_out": [
+              {
+                "id": 3196,
+                "name": "PALBO/2026/00390",
+                "partner_id": "CAPA TULUM",
+                "amount": 297.91,
+                "date": "2026-04-23",
+                "memo": "AFLORA LOFT 221"
+              },
+              {
+                "id": 3195,
+                "name": "PALBO/2026/00389",
+                "partner_id": "CAPA TULUM",
+                "amount": 297.91,
+                "date": "2026-04-22",
+                "memo": "AFLORA LOFT 208"
+              },
+              {
+                "id": 3194,
+                "name": "PALBO/2026/00388",
+                "partner_id": "ROSELY DANILY CARRILLO HUCHIN",
+                "amount": 1400.0,
+                "date": "2026-04-22",
+                "memo": "AFLORA LOFT"
+              },
+              {
+                "id": 3181,
+                "name": "PALBO/2026/00366",
+                "partner_id": "MAYAN KAKAW TULUM",
+                "amount": 992.01,
+                "date": "2026-04-20",
+                "memo": "VILLA PAPALOTE"
+              },
               {
                 "id": 3175,
                 "name": "PALBO/2026/00365",
@@ -1039,38 +1167,6 @@
                 "amount": 332.87,
                 "date": "2026-04-14",
                 "memo": "VILLA PAPALOTE"
-              },
-              {
-                "id": 3069,
-                "name": "PALBO/2026/00346",
-                "partner_id": "MAYAN KAKAW TULUM",
-                "amount": 191.44,
-                "date": "2026-04-14",
-                "memo": "CASA ALEJANDRA"
-              },
-              {
-                "id": 3068,
-                "name": "PALBO/2026/00345",
-                "partner_id": "MAYAN KAKAW TULUM",
-                "amount": 158.56,
-                "date": "2026-04-14",
-                "memo": "AMIRA DISTRICT"
-              },
-              {
-                "id": 3067,
-                "name": "PALBO/2026/00344",
-                "partner_id": "MAYAN KAKAW TULUM",
-                "amount": 196.68,
-                "date": "2026-04-14",
-                "memo": "SERGIO ADRIAN SUAREZ VILCHIS"
-              },
-              {
-                "id": 2792,
-                "name": "PALBO/2026/00312",
-                "partner_id": "MAYAN KAKAW TULUM",
-                "amount": 1044.0,
-                "date": "2026-04-13",
-                "memo": "TANAAH TULUM CONDOMINIO"
               }
             ],
             "facturas_venta": [
@@ -1117,53 +1213,11 @@
                 "invoice_date_due": "2026-02-16"
               },
               {
-                "id": 1402,
-                "name": "INV/2026/00011",
-                "partner_id": "MARTIN DEMIAN CHAIA",
-                "amount_residual": 2736.29,
-                "invoice_date_due": "2026-01-14"
-              },
-              {
-                "id": 1401,
-                "name": "INV/2026/00010",
-                "partner_id": "MARTIN DEMIAN CHAIA",
-                "amount_residual": 2736.29,
-                "invoice_date_due": "2026-01-14"
-              },
-              {
-                "id": 1400,
-                "name": "INV/2026/00009",
-                "partner_id": "MARTIN DEMIAN CHAIA",
-                "amount_residual": 2796.36,
-                "invoice_date_due": "2026-01-14"
-              },
-              {
-                "id": 1399,
-                "name": "INV/2026/00008",
-                "partner_id": "MARTIN DEMIAN CHAIA",
-                "amount_residual": 2856.44,
-                "invoice_date_due": "2026-01-14"
-              },
-              {
-                "id": 1398,
-                "name": "INV/2026/00007",
-                "partner_id": "MARTIN DEMIAN CHAIA",
-                "amount_residual": 2646.45,
-                "invoice_date_due": "2026-01-14"
-              },
-              {
                 "id": 1312,
                 "name": "INV/2025/00036",
                 "partner_id": "PANZA DINING & BAR, ALEJANDRA DIEGO",
                 "amount_residual": 66056.63,
                 "invoice_date_due": "2025-12-26"
-              },
-              {
-                "id": 519,
-                "name": "INV/2025/00011",
-                "partner_id": "VILLA IKEBANA",
-                "amount_residual": 4379.84,
-                "invoice_date_due": "2025-11-30"
               }
             ],
             "cxp_pendientes": [],
@@ -1176,7 +1230,7 @@
           "color": "#4493f8",
           "tipo": "XTELA",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
             "pagos_in_total": 0,
             "pagos_in_count": 0,
@@ -1314,7 +1368,7 @@
           "color": "#39d353",
           "tipo": "XTELA",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
             "pagos_in_total": 111972.55,
             "pagos_in_count": 1,
@@ -1380,7 +1434,7 @@
           "color": "#79c0ff",
           "tipo": "XTELA",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
             "pagos_in_total": 0,
             "pagos_in_count": 0,
@@ -1412,7 +1466,7 @@
           "color": "#bc8cff",
           "tipo": "XTELA",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
             "pagos_in_total": 0,
             "pagos_in_count": 0,
@@ -1444,7 +1498,7 @@
           "color": "#56d364",
           "tipo": "XTELA",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
             "pagos_in_total": 243484.62,
             "pagos_in_count": 1,
@@ -1510,7 +1564,7 @@
           "color": "#8b949e",
           "tipo": "XTELA",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
             "pagos_in_total": 0,
             "pagos_in_count": 0,
@@ -1542,7 +1596,7 @@
           "color": "#8b949e",
           "tipo": "XTELA",
           "status": "ok",
-          "ultima_actualizacion": "19:51",
+          "ultima_actualizacion": "21:06",
           "resumen": {
             "pagos_in_total": 0,
             "pagos_in_count": 0,
