@@ -1,19 +1,15 @@
 name: Sync Dashboard
-
 on:
   workflow_dispatch:
-
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - name: SSH and run sync
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: 34.27.77.64
           username: axc
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/axc/agentes-mz
-            source venv/bin/activate
-            python3 xtela_dashboard_sync.py
+          port: 22
+          script: cd /home/axc/agentes-mz && source venv/bin/activate && python3 xtela_dashboard_sync.py
